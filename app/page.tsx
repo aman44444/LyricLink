@@ -1,7 +1,10 @@
-
+import Main from "./components/main"
+import "./globals.css"
 
 export default function Home() {
   return (
-   <div></div>
+   <div className="bg-black">
+    <Main/>
+   </div>
   )
 }
