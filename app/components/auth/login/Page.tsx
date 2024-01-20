@@ -1,11 +1,16 @@
 import React from 'react'
-
-function Login() {
+const Login = () => {
   return (
-    <div>Login
-    
+    <div className='w-full h-screen'> Login
+       <div className=''>
+           <form>
+             <input type="email" placeholder='Email'/>
+             <input type='password' placeholder='Password'/>
+             <button>Sign In</button>
+           </form>
+       </div>
     </div>
-    
+
   )
 }
 
