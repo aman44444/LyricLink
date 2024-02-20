@@ -1,39 +1,42 @@
-import React, { useState } from 'react'
-const Login = () => {
+import React, { useState } from 'react';
+
+const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleSubmit =async (e:MouseEvent) => {
-       e.preventDefault();
-       setError('')
-       try {
-        await logIn(email,password)
-       } catch (error:any){
-        console.log(error);
-        setError(error.message)
-       }
-  }
+  const handleSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Implement Firebase authentication logic for signing in with email and password
+  };
 
   return (
-    
-    <div className='w-full h-screen'> Login
-       <div className=''>
-           <form>
-             <input 
-             onChange={(e) => setEmail(e.target.value)}
-             type="email"
-              placeholder='Email'/>
-             <input 
-              onChange={(e) => setPassword(e.target.value)}
-             type='password' 
-             placeholder='Password'/>
-             <button>Sign In</button>
-           </form>
-       </div>
+    <div>
+      <h2>Sign In</h2>
+      <form onSubmit={handleSignIn}>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
     </div>
+  );
+};
 
-  )
-}
-
-export default Login
+export default SignIn;
