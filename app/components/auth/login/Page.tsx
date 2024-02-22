@@ -1,12 +1,19 @@
+import firebase from 'firebase/compat/app';
 import React, { useState } from 'react';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement Firebase authentication logic for signing in with email and password
+     try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log('User signed in successfully!');
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+    }
+ 
   };
 
   return (

@@ -1,12 +1,17 @@
+import firebase from 'firebase/compat/app';
 import React, { useState } from 'react';
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Implement Firebase authentication logic for signing up with email and password
+  const handleSignUp = async (e: React.FormEvent) => {
+   try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      console.log('User signed up successfully!');
+    } catch (error) {
+      console.error('Error signing up:', error.message);
+    }
   };
 
   return (
