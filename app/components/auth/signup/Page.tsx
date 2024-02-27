@@ -4,13 +4,20 @@ import React, { useState } from 'react';
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleSignUp = async (e: React.FormEvent) => {
-   try {
+    e.preventDefault();
+    try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
       console.log('User signed up successfully!');
     } catch (error) {
-      console.error('Error signing up:', error.message);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+        console.error('Error signing up:', error.message);
+      } else {
+        console.error('Unknown error occurred:', error);
+      }
     }
   };
 
