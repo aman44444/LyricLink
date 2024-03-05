@@ -1,10 +1,11 @@
 
 import "./globals.css"
+import Main from "./Pages/welcomePage/page"
 
 export default function Home() {
   return (
-   <div className="bg-black">
-   
+   <div >
+      <Main/>
    </div>
   )
 }
