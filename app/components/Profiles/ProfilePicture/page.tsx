@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from "react";
 
-const ProfilePictureUpload = ({ user }) => {
+interface Props {
+  user: { profilePicture: string };
+}
+
+const ProfilePictureUpload: React.FC<Props> = ({ user }) => {
   const [profilePicture, setProfilePicture] = useState(user.profilePicture);
 
-  const handleUpload = (event) => {
-    const file = event.target.files[0];
+  const handleUpload: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const file = event.target.files?.[0];
     // Upload the file to a storage service like Firebase Storage
     // Update the user's profile picture URL in the database
   };
