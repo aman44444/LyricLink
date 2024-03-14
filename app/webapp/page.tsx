@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import UserProfile from "../components/Profiles/UserProfile/page";
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -28,6 +29,7 @@ const getReturnedParamsFromSpotifyAuth = (hash: string) => {
 const WebApp: React.FC = () => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState<any>(null); 
 
   useEffect(() => {
     if (window.location.hash) {
@@ -40,10 +42,25 @@ const WebApp: React.FC = () => {
       window.localStorage.setItem("tokenType", token_type);
       window.localStorage.setItem("expiresIn", expires_in);
       
-      setIsLoggedIn(true); 
+      setIsLoggedIn(true);
+      fetchUserData(access_token); 
       router.push("/webapp");
     }
   }, [router]);
+
+  const fetchUserData = async (accessToken: string) => {
+    try {
+      const response = await fetch("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const userData = await response.json();
+      setUserData(userData); 
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   const handleLogin = () => {
     window.location.href = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAM}&response_type=token&show_dialog=true`;
@@ -51,8 +68,12 @@ const WebApp: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>hi</h1>
-      {!isLoggedIn && <button onClick={handleLogin}>login to spotify</button>}
+      <h1>Spotify Web App</h1>
+      {isLoggedIn ? (
+        <UserProfile userData={userData} />
+      ) : (
+        <button onClick={handleLogin}>Login to Spotify</button>
+      )}
     </div>
   );
 };
