@@ -1,50 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import firebase from 'firebase/compat/app';
-import 'firebase/firestore';
-import axios from 'axios';
+import React from "react";
 
-const UserProfile: React.FC = () => {
-  const [userProfile, setUserProfile] = useState<any>(null);
+interface UserProfileProps {
+  userData: any; 
+}
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        
-        const currentUser = firebase.auth().currentUser;
-        if (currentUser) {
-          const userRef = firebase.firestore().collection('users').doc(currentUser.uid);
-          const doc = await userRef.get();
-          const accessToken = doc.data()?.accessToken;
-
-         
-          const response = await axios.get('https://api.spotify.com/v1/me', {
-            headers: {
-              Authorization: `Bearer ${accessToken}`
-            }
-          });
-
-          setUserProfile(response.data);
-        } else {
-          console.error('No user authenticated');
-        }
-      } catch (error) {
-        console.error('Error fetching user profile:', error);
-      }
-    };
-
-    fetchUserProfile();
-  }, []);
-
+const UserProfile: React.FC<UserProfileProps> = ({ userData }) => {
   return (
     <div>
-      {userProfile ? (
-        <div>
-          <h2>User Profile</h2>
-          <p>Display user profile information here</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <h2>Welcome, {userData?.display_name}</h2>
+      <p>Email: {userData?.email}</p>
+      
     </div>
   );
 };
