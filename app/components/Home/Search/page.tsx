@@ -1,29 +1,39 @@
 "use client"
-import React, { useState } from 'react';
-import { RiSearchLine } from 'react-icons/ri';
+import React, { useState } from "react";
+import { searchSpotify } from "@/app/utils/spotifyAPI";
 
 const Search: React.FC = () => {
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<any[]>([]); 
 
-  const handleSearch = () => {
-    // Implement your search logic here when using the API
-    console.log(`Search for: ${query}`);
+  const handleSearch = async () => {
+    try {
+      const results = await searchSpotify(searchQuery); 
+      setSearchResults(results);
+    } catch (error) {
+      console.error("Error searching:", error);
+    }
   };
 
   return (
-    <div className="mt-1 flex items-center flex-wrap ">
+    <div>
       <input
         type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search for a track..."
-        className="p-2 border border-gray-300 rounded-l  w-4/5 h-6"
+        placeholder="Search for music..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button onClick={handleSearch} className="bg-black-500 text-white p-2 rounded-r">
-        <RiSearchLine />
-      </button>
+      <button onClick={handleSearch}>Search</button>
+
+     
+      <ul>
+        {searchResults.map((result, index) => (
+          <li key={index}>{result.name}</li> 
+        ))}
+      </ul>
     </div>
   );
 };
 
 export default Search;
+
