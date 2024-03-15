@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import UserProfile from "../components/Profiles/UserProfile/page";
 import Search from "../components/Home/Search/page";
+import MusicPlayer from "../components/Player/MusicPlayer/page";
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -71,7 +72,9 @@ const WebApp: React.FC = () => {
     <div className="container">
       <h1>Spotify Web App</h1>
       {isLoggedIn ? (
-        <><UserProfile userData={userData} /><Search /></>
+        <><UserProfile userData={userData} /><Search />
+        <MusicPlayer track={null}/>
+        </>
       ) : (
         <button onClick={handleLogin}>Login to Spotify</button>
       )}
