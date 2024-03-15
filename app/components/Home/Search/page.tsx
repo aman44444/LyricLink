@@ -1,10 +1,13 @@
 "use client"
 import React, { useState } from "react";
 import { searchSpotify } from "@/app/utils/spotifyAPI";
+import MusicPlayer from "../../Player/MusicPlayer/page";
 
 const Search: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]); 
+  const [selectedTrack, setSelectedTrack] = useState<any | null>(null);
+
 
   const handleSearch = async () => {
     try {
@@ -13,6 +16,10 @@ const Search: React.FC = () => {
     } catch (error) {
       console.error("Error searching:", error);
     }
+  };
+
+  const handlePlayTrack = (track: any) => {
+    setSelectedTrack(track);
   };
 
   return (
@@ -28,9 +35,21 @@ const Search: React.FC = () => {
      
       <ul>
         {searchResults.map((result, index) => (
-          <li key={index}>{result.name}</li> 
+          <li key={index}>
+            {result.name} - {result.artists.map((artist: any) => artist.name).join(", ")}
+            <button onClick={() => handlePlayTrack(result)}>Play</button>
+          </li> 
         ))}
       </ul>
+
+      {selectedTrack && (
+        <div>
+          <h3>Now Playing</h3>
+          <p>{selectedTrack.name} - {selectedTrack.artists.map((artist: any) => artist.name).join(", ")}</p>
+         
+          <MusicPlayer track={selectedTrack}  />
+        </div>
+      )}
     </div>
   );
 };

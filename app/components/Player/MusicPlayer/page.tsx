@@ -1,39 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
-const MusicPlayer: React.FC = () => {
+interface Track {
+  id: string;
+  name: string;
+  artist: string;
+  duration: number; 
+  previewUrl: string; 
+}
 
-  
-  const handlePlay = () => {
-    
-  };
+interface MusicPlayerProps {
+  track: Track | null;
+}
 
-  const handlePause = () => {
-   
-  };
+const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
-  const handleSkipForward = () => {
-    
-  };
+  useEffect(() => {
+    if (track) {
+      const audioElement = new Audio(track.previewUrl);
+      setAudio(audioElement);
+    } else {
+      setAudio(null);
+    }
+    setIsPlaying(false);
+  }, [track]);
 
-  const handleSkipBackward = () => {
-    
-  };
 
-  const handleVolumeChange = () => {
-    
+  const togglePlayback = () => {
+    if (audio) {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+   }
   };
 
   return (
     <div>
-     
-      <div>
-        <button onClick={handleSkipBackward}>Skip Backward</button>
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button>
-        <button onClick={handleSkipForward}>Skip Forward</button>
+      {track ? (
+        <div>
+        <button onClick={togglePlayback}>
+          {isPlaying ? "Pause" : "Play"}
+        </button>
+        <audio controls>
+          <source src={track.previewUrl} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </div>
-      
-      <input type="range" min="0" max="100" onChange={handleVolumeChange} />
+    ) : (
+      <p>No track selected</p>
+      )}
     </div>
   );
 };
