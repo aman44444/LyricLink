@@ -19,11 +19,12 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
   useEffect(() => {
     if (track) {
       const audioElement = new Audio(track.previewUrl);
+      audioElement.addEventListener("ended", () => setIsPlaying(false));
       setAudio(audioElement);
     } else {
       setAudio(null);
     }
-    setIsPlaying(false);
+    
   }, [track]);
 
 
