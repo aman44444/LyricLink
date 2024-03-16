@@ -17,7 +17,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (track) {
+    if (track && track.previewUrl) {
       const audioElement = new Audio(track.previewUrl);
       audioElement.addEventListener("ended", () => setIsPlaying(false));
       setAudio(audioElement);
@@ -39,9 +39,13 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
    }
   };
 
+  useEffect(() => {
+    console.log("Track changed:", track);
+  }, [track]);
+
   return (
     <div>
-      {track ? (
+     {track && track.previewUrl ? (
         <div>
         <button onClick={togglePlayback}>
           {isPlaying ? "Pause" : "Play"}

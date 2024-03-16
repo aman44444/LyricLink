@@ -22,6 +22,8 @@ const Search: React.FC = () => {
     setSelectedTrack(track);
   };
 
+  console.log("Selected track:", selectedTrack); 
+
   return (
     <div>
       <input
@@ -36,7 +38,8 @@ const Search: React.FC = () => {
       <ul>
         {searchResults.map((result, index) => (
           <li key={index}>
-            {result.name} - {result.artists.map((artist: any) => artist.name).join(", ")}
+            {result.name} -{" "}
+            {result.artists.map((artist: any) => artist.name).join(", ")}
             <button onClick={() => handlePlayTrack(result)}>Play</button>
           </li> 
         ))}
