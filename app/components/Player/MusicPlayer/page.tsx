@@ -5,21 +5,23 @@ interface Track {
   name: string;
   artist: string;
   duration: number; 
-  previewUrl: string; 
+  preview_url: string; 
 }
 
 interface MusicPlayerProps {
-  track: Track | null;
+  track: Track ;
 }
 
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (track && track.previewUrl) {
-      const audioElement = new Audio(track.previewUrl);
+    if (track) {
+      const audioElement = new Audio(track.preview_url);
       audioElement.addEventListener("ended", () => setIsPlaying(false));
+      audioElement.addEventListener("error", handleError);
       setAudio(audioElement);
     } else {
       setAudio(null);
@@ -27,36 +29,40 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
     
   }, [track]);
 
+  const handleError = () => {
+    setError("Error loading audio. Please try again later.");
+    setIsPlaying(false);
+  };
 
   const togglePlayback = () => {
     if (audio) {
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play().catch(handleError);
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
-   }
   };
-
-  useEffect(() => {
-    console.log("Track changed:", track);
-  }, [track]);
 
   return (
     <div>
-     {track && track.previewUrl ? (
+      {track ? (
         <div>
-        <button onClick={togglePlayback}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
-        <audio controls>
-          <source src={track.previewUrl} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    ) : (
-      <p>No track selected</p>
+          <button onClick={togglePlayback}>
+            {isPlaying ? "Pause" : "Play"}
+          </button>
+          {error ? (
+            <p>{error}</p>
+          ) : (
+            <audio controls>
+              <source src={track.preview_url} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          )}
+        </div>
+      ) : (
+        <p>No track selected</p>
       )}
     </div>
   );

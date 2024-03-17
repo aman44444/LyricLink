@@ -19,6 +19,7 @@ const Search: React.FC = () => {
   };
 
   const handlePlayTrack = (track: any) => {
+    console.log("Selected track:", track);
     setSelectedTrack(track);
   };
 
