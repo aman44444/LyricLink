@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import HomePage from '@/app/components/Home/HomePage/HomePage';
 
-function page() {
+const homeAlt: React.FC = () => {
   return (
-    <div>page</div>
+    <div>
+      <HomePage/>
+    </div>
   )
 }
 
-export default page
+export default homeAlt

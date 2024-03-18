@@ -22,3 +22,7 @@ export const searchSpotify = async (query: string): Promise<any[]> => {
       throw error;
     }
   };
+
+ 
+
+
