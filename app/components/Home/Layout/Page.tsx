@@ -1,19 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Layout: React.FC = ({ }) => {
+import Search from '../Search/page';
+import Footer from '../Footer/Footer';
+
+const Layout = () => {
+  const [currentPage, setCurrentPage] = useState('home'); 
+
   return (
-    <div>
-      <header>
+    <div className="flex h-screen">
+      <div className="w-30">
         
-        <h1>Dating and Music App</h1>
-      </header>
-      <main>{}</main>
-      <footer>
-       
-        <p>&copy; {new Date().getFullYear()} Dating and Music App</p>
-      </footer>
+        <NavigationBar setCurrentPage={setCurrentPage} />
+      </div>
+      <div className="w-70 bg-gray-100 p-4 overflow-y-auto">
+        {currentPage === 'home' && (
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Home</h1>
+            
+            <Search/>
+            <FeaturedPlaylists />
+          </div>
+        )}
+        {currentPage === 'search' && (
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Search</h1>
+          
+          </div>
+        )}
+
+        {currentPage === 'recentlyPlayed' && (
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Recently Played Tracks</h1>
+            {/* comp */}
+          </div>
+        )}
+        {currentPage === 'recommendedArtists' && (
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Recommended Artists</h1>
+            {/* compoenent */}
+          </div>
+        )}
+      </div>
+      <Footer />
     </div>
   );
-};
+}
 
 export default Layout;
