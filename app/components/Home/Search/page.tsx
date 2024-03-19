@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { searchSpotify } from "@/app/utils/spotifyAPI";
 import MusicPlayer from "../../Player/MusicPlayer/page";
 
+
 const Search: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]); 
@@ -26,6 +27,7 @@ const Search: React.FC = () => {
   console.log("Selected track:", selectedTrack); 
 
   return (
+  
     <div>
       <input
         type="text"
@@ -55,6 +57,7 @@ const Search: React.FC = () => {
         </div>
       )}
     </div>
+    
   );
 };
 

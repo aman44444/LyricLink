@@ -1,49 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import HomePage from "../HomePage/HomePage";
+import Search from "../Search/page";
+import Navbar from "../Navigation/page";
 
-import Search from '../Search/page';
-import Footer from '../Footer/Footer';
+const Layout: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<"Home" | "Search">("Home");
 
-const Layout = () => {
-  const [currentPage, setCurrentPage] = useState('home'); 
+  const handleHomeClick = () => {
+    setCurrentPage("Home");
+  };
+
+  const handleSearchClick = () => {
+    setCurrentPage("Search");
+  };
 
   return (
-    <div className="flex h-screen">
-      <div className="w-30">
-        
-        <NavigationBar setCurrentPage={setCurrentPage} />
-      </div>
-      <div className="w-70 bg-gray-100 p-4 overflow-y-auto">
-        {currentPage === 'home' && (
-          <div>
-            <h1 className="text-2xl font-bold mb-4">Home</h1>
-            
-            <Search/>
-            <FeaturedPlaylists />
-          </div>
-        )}
-        {currentPage === 'search' && (
-          <div>
-            <h1 className="text-2xl font-bold mb-4">Search</h1>
-          
-          </div>
-        )}
-
-        {currentPage === 'recentlyPlayed' && (
-          <div>
-            <h1 className="text-2xl font-bold mb-4">Recently Played Tracks</h1>
-            {/* comp */}
-          </div>
-        )}
-        {currentPage === 'recommendedArtists' && (
-          <div>
-            <h1 className="text-2xl font-bold mb-4">Recommended Artists</h1>
-            {/* compoenent */}
-          </div>
-        )}
-      </div>
-      <Footer />
+    <div className="flex w-screen">
+      
+        <div className="h-screen w-1/5">
+          <button onClick={handleHomeClick}>Home</button>
+          <button onClick={handleSearchClick}>Search</button>
+        </div>
+        <div className="h- w-4/5 ">
+          <Navbar/>
+          {currentPage === "Home" ? <HomePage /> : <Search/>}
+        </div>
+     
+      
     </div>
   );
-}
+};
 
 export default Layout;

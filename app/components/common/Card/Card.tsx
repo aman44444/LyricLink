@@ -1,22 +1,21 @@
-import React from "react";
-interface Song {
-  imageUrl: string;
-  name: string;
-  artists: string;
-}
+import React from 'react';
 
 interface CardProps {
-  item: Song;
+    imageUrl: string;
+    title: string;
+    subtitle: string;
 }
 
-const Card: React.FC<CardProps> = ({item }) => {
-  return (
-    <div className="bg-white rounded-lg shadow-md p-4">
-      <img src={item.imageUrl} alt={item.name} className="w-full h-40 object-cover mb-4 rounded-lg" />
-      <h3 className="text-xl font-semibold">{item.name}</h3>
-      <p className="text-sm text-gray-600">{item.artists}</p>
-    </div>
-  );
+const Card: React.FC<CardProps> = ({ imageUrl, title, subtitle }) => {
+    return (
+        <div className="card">
+            <img src={imageUrl} alt={title} />
+            <div className="card-info">
+                <h3>{title}</h3>
+                <p>{subtitle}</p>
+            </div>
+        </div>
+    );
 };
 
 export default Card;

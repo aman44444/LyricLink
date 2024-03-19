@@ -1,28 +1,52 @@
 import React, { useEffect, useState } from 'react';
+import { getRecommendedSongs, getNewReleases } from '../../../utils/spotifyAPI'; 
 import Card from '../../common/Card/Card';
 
-
-interface Song {
-    imageUrl: string;
-    name: string;
-    artists: string;
- }
-  
-
 const HomePage: React.FC = () => {
-   
-const [recommendedSongs, setRecommendedSongs] = useState<Song[]>([]);
-return (
-    <div className="container mx-auto">
-      <h2 className="text-3xl font-semibold mb-4">New Release</h2>
-        <h2 className="text-3xl font-semibold my-8">Recommended Songs</h2>
-      <div className="grid grid-cols-3 gap-4">
-        {recommendedSongs.map((song, index) => (
-          <Card key={index} item={song} />
-        ))}
-      </div>
+    const [recommendedSongs, setRecommendedSongs] = useState<any[]>([]);
+    const [newReleases, setNewReleases] = useState<any[]>([]);
+
+    useEffect(() => {
+       
+        getRecommendedSongs()
+            .then(data => setRecommendedSongs(data))
+            .catch(error => console.error('Error fetching recommended songs:', error));
+
+       
+        getNewReleases()
+            .then(data => setNewReleases(data))
+            .catch(error => console.error('Error fetching new releases:', error));
+    }, []);
+
+    return (
+        
+        <div>
+        <h2>Recommended Songs</h2>
+        <div className="card-container">
+            {recommendedSongs.map((song: any) => (
+                <Card
+                    key={song.id}
+                    imageUrl={song.album.images[0].url}
+                    title={song.name}
+                    subtitle={song.artists.map((artist: any) => artist.name).join(', ')}
+                />
+            ))}
+        </div>
+
+        <h2>New Releases</h2>
+        <div className="card-container">
+            {newReleases.map((album: any) => (
+                <Card
+                    key={album.id}
+                    imageUrl={album.images[0].url}
+                    title={album.name}
+                    subtitle={album.artists.map((artist: any) => artist.name).join(', ')}
+                />
+            ))}
+        </div>
     </div>
-  );
+   
+);
 };
 
 export default HomePage;
