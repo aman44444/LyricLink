@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import HomePage from "../HomePage/HomePage";
 import Search from "../Search/page";
 import Navbar from "../Navigation/page";
+import UserProfile from "../../Profiles/UserProfile/page";
 
 const Layout: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<"Home" | "Search">("Home");
+  const [currentPage, setCurrentPage] =  useState<"Home" | "Search" | "Profile" | "Settings">("Home");
 
   const handleHomeClick = () => {
     setCurrentPage("Home");
@@ -12,6 +13,16 @@ const Layout: React.FC = () => {
 
   const handleSearchClick = () => {
     setCurrentPage("Search");
+  };
+
+  const handleProfileClick = () => {
+    setCurrentPage("Profile"); 
+    
+  };
+
+  const handleSettingsClick = () => {
+    setCurrentPage("Settings"); 
+   
   };
 
   return (
@@ -22,8 +33,14 @@ const Layout: React.FC = () => {
           <button onClick={handleSearchClick}>Search</button>
         </div>
         <div className="h- w-4/5 ">
-          <Navbar/>
-          {currentPage === "Home" ? <HomePage /> : <Search/>}
+        <Navbar
+          onProfileClick={handleProfileClick}
+          onSettingsClick={handleSettingsClick}
+        />
+          {currentPage === "Home" ? <HomePage /> : 
+           currentPage === "Search" ? <Search/>:
+         currentPage === "Profile" ? <UserProfile /> : null}
+        {/* //  currentPage === "Settings" ? <Settings />  */}
         </div>
      
       

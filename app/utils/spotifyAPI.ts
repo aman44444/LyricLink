@@ -74,6 +74,30 @@ export const getNewReleases = async (): Promise<any[]> => {
     }
 };
 
+export const fetchUserData = async ( ): Promise<any> => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+            throw new Error("Access token not found");
+        }
+
+        const response = await fetch("https://api.spotify.com/v1/me", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch new releases");
+        }
+    
+    const userData = await response.json();
+    return userData;
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    throw error;
+  }
+};
   
 
 
