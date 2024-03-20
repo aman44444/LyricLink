@@ -71,7 +71,8 @@ const WebApp: React.FC = () => {
     <div className="container">
       <h1>Spotify Web App</h1>
       {isLoggedIn ? (
-        <><UserProfile userData={userData} />
+        <>
+        
          <Layout/>
         
         </>
