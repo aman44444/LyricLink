@@ -20,27 +20,27 @@ const HomePage: React.FC = () => {
 
     return (
         
-        <div>
+        <div className="overflow-hidden">
         <h2>Recommended Songs</h2>
-        <div className="card-container">
+        <div className="card-container flex ">
             {recommendedSongs.map((song: any) => (
                 <Card
                     key={song.id}
                     imageUrl={song.album.images[0].url}
                     title={song.name}
-                    subtitle={song.artists.map((artist: any) => artist.name).join(', ')}
+                    // subtitle={song.artists.map((artist: any) => artist.name).join(', ')}
                 />
             ))}
         </div>
 
         <h2>New Releases</h2>
-        <div className="card-container">
+        <div className="card-container flex ">
             {newReleases.map((album: any) => (
                 <Card
                     key={album.id}
                     imageUrl={album.images[0].url}
                     title={album.name}
-                    subtitle={album.artists.map((artist: any) => artist.name).join(', ')}
+                    // subtitle={album.artists.map((artist: any) => artist.name).join(', ')}
                 />
             ))}
         </div>
