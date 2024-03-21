@@ -68,13 +68,10 @@ const WebApp: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Spotify Web App</h1>
+    <div className="w-screen h-full overflow-y-hidden">
       {isLoggedIn ? (
         <>
-        
-         <Layout/>
-        
+        <Layout/>
         </>
       ) : (
         <button onClick={handleLogin}>Login to Spotify</button>
