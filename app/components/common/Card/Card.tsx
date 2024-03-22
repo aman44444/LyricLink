@@ -8,8 +8,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ imageUrl, title, }) => {
     return (
-        <div className="h-55 w-55">
-            <img className="object-fill h-55 w-55 " src={imageUrl} alt={title} />
+        <div className="h-30 w-30 m-2">
+            <img className="object-cover h-30 w-30 " src={imageUrl} alt={title} />
             <div className="flex overflow-hidden">
                 <p>{title}</p>
                 {/* <p>{subtitle}</p> */}

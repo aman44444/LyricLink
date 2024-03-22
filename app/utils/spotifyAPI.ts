@@ -98,6 +98,57 @@ export const fetchUserData = async ( ): Promise<any> => {
     throw error;
   }
 };
+
+export const fetchUserPlaylists = async (): Promise<any> => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      throw new Error("Access token not found");
+    }
+
+    const response = await fetch("https://api.spotify.com/v1/me/playlists", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch user playlists");
+    }
+
+    const playlistsData = await response.json();
+    return playlistsData.items;
+  } catch (error) {
+    console.error("Error fetching user playlists:", error);
+    throw error;
+  }
+};
+
+export const fetchPlaylistTracks = async (playlistId: string): Promise<any[]> => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      throw new Error("Access token not found");
+    }
+
+    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch playlist tracks");
+    }
+
+    const data = await response.json();
+    return data.items.map((item: any) => item.track);
+  } catch (error) {
+    console.error("Error fetching playlist tracks:", error);
+    throw error;
+  }
+};
+
   
 
 
