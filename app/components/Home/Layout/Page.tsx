@@ -5,9 +5,10 @@ import Navbar from "../Navigation/page";
 import UserProfile from "../../Profiles/UserProfile/page";
 import { GoHome } from "react-icons/go";
 import { GoSearch } from "react-icons/go";
+import UserPlaylists from "../../Player/Playlist/page";
 
 const Layout: React.FC = () => {
-  const [currentPage, setCurrentPage] =  useState<"Home" | "Search" | "Profile" | "Settings">("Home");
+  const [currentPage, setCurrentPage] =  useState<"Home" | "Search" | "Profile" | "Settings" | "Playlist">("Home");
 
   const handleHomeClick = () => {
     setCurrentPage("Home");
@@ -27,22 +28,27 @@ const Layout: React.FC = () => {
    
   };
 
+  const handlePlaylistClick = () => {
+    setCurrentPage("Playlist"); 
+   
+  };
+
   return (
-    <div className="w-screen h-screen flex bg-black text-white p-3 ">
-      <div className="h-screen w-1/5 pr-3">
-        <div className="h-1/5 w-full bg-neutral-800 rounded-md " >
+    <div className="w-screen h-screen flex bg-black text-white p-2 ">
+      <div className="h-screen w-1/5 pr-2">
+        <div className="h-1/5 w-full bg-neutral-800 rounded-md flex flex-col justify-center " >
           <ul>
-            <li onClick={handleHomeClick} className="flex">
-              <GoHome/>
-              Home
+            <li onClick={handleHomeClick} className="flex m-3">
+              <GoHome size={30}/>
+              <p className="ml-2 text-xl">Home</p>
             </li>
-            <li onClick={handleSearchClick} className="flex">
-              <GoSearch/>
-              Search
+            <li onClick={handleSearchClick} className="flex m-3 ">
+              <GoSearch size={30}/>
+            <p className="ml-2 text-xl">Search</p>
             </li>
           </ul>
         </div>
-        <div className=" border-black h-4/5 w-full border-2 bg-neutral-800 rounded-md ">
+        <div className=" border-black h-3/4 w-full border-2 bg-neutral-800 rounded-md mt-2 ">
 
         </div>
       </div>
@@ -50,10 +56,12 @@ const Layout: React.FC = () => {
         <Navbar
           onProfileClick={handleProfileClick}
           onSettingsClick={handleSettingsClick}
+          onPlaylistClick={handlePlaylistClick}
         />
           {currentPage === "Home" ? <HomePage /> : 
            currentPage === "Search" ? <Search/>:
-         currentPage === "Profile" ? <UserProfile /> : null}
+         currentPage === "Profile" ? <UserProfile /> : 
+         currentPage === "Playlist" ? <UserPlaylists/>:null}
         {/* //  currentPage === "Settings" ? <Settings />  */}
      </div>
      

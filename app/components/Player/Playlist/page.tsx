@@ -1,47 +1,73 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; 
+import { fetchUserPlaylists, fetchPlaylistTracks } from '@/app/utils/spotifyAPI';
 
-interface PlaylistProps {
-  accessToken: string;
-}
-
-interface PlaylistData {
+interface Playlist {
   id: string;
   name: string;
+  description: string;
+  imageUrl: string;
 }
 
-const Playlist: React.FC<PlaylistProps> = ({ accessToken }) => {
-  const [playlists, setPlaylists] = useState<PlaylistData[]>([]);
+const UserPlaylists: React.FC = () => {
+  const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist | null>(null);
+  const [playlistTracks, setPlaylistTracks] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchPlaylists = async () => {
+    const getUserPlaylists = async () => {
       try {
-        const response = await axios.get('https://api.spotify.com/v1/me/playlists', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        setPlaylists(response.data.items);
+        const playlistsData = await fetchUserPlaylists();
+        const formattedPlaylists = playlistsData.map((playlist: any) => ({
+          id: playlist.id,
+          name: playlist.name,
+          description: playlist.description,
+          imageUrl: playlist.images[0].url, 
+        }));
+        setPlaylists(formattedPlaylists);
       } catch (error) {
-        console.error('Error fetching playlists:', error);
+        console.error('Error fetching user playlists:', error);
       }
     };
 
-    if (accessToken) {
-      fetchPlaylists();
+    getUserPlaylists();
+  }, []);
+
+  const handlePlaylistClick = async (playlist: Playlist) => {
+    try {
+      const tracks = await fetchPlaylistTracks(playlist.id);
+      setPlaylistTracks(tracks);
+      setSelectedPlaylist(playlist);
+    } catch (error) {
+      console.error('Error fetching playlist tracks:', error);
     }
-  }, [accessToken]);
+  };
 
   return (
     <div>
-      <h3>Playlists</h3>
-      <ul>
-        {playlists.map((playlist) => (
-          <li key={playlist.id}>{playlist.name}</li>
-        ))}
-      </ul>
+      <h2>User Playlists</h2>
+      <div className="playlist-container">
+        {selectedPlaylist ? (
+          <div>
+            <h3>{selectedPlaylist.name}</h3>
+            <button onClick={() => setSelectedPlaylist(null)}>Back to Playlists</button>
+            <ul>
+              {playlistTracks.map((track) => (
+                <li key={track.id}>{track.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          playlists.map((playlist) => (
+            <div key={playlist.id} onClick={() => handlePlaylistClick(playlist)} className="playlist">
+              <img src={playlist.imageUrl} alt={playlist.name} />
+              <h3>{playlist.name}</h3>
+              <p>{playlist.description}</p>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };
 
-export default Playlist;
+export default UserPlaylists;

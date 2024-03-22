@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { CiSettings } from "react-icons/ci";
+import { MdPlaylistPlay } from "react-icons/md";
 
 interface NavbarProps {
   onProfileClick: () => void;
   onSettingsClick: () => void;
+  onPlaylistClick: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick }) => {
+const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick, onPlaylistClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleProfileIconClick = () => {
@@ -19,6 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick }) => {
 
   return (
     <>
+    <div className="flex justify-end">
       <div className="bg- text-white p-4">
         <div className="flex items-center">
           <button
@@ -70,6 +73,17 @@ const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick }) => {
           <div></div>
         </div>
       )}
+     <div className="bg- text-white p-4">
+        <div className="flex items-center">
+          <button
+            className="text-white focus:outline-none"
+            onClick={onPlaylistClick}
+          >
+            <MdPlaylistPlay />
+          </button>
+        </div>
+      </div>
+      </div>
     </>
   );
 };
