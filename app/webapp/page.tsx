@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import UserProfile from "../components/Profiles/UserProfile/page";
 import Layout from "../components/Home/Layout/Page";
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
@@ -68,13 +67,18 @@ const WebApp: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-full overflow-y-hidden">
+    <div className="w-screen h-screen">
       {isLoggedIn ? (
         <>
         <Layout/>
         </>
       ) : (
-        <button onClick={handleLogin}>Login to Spotify</button>
+        <div className="flex justify-center items-center w-screen h-screen  bg-neutral-800 ">
+          <div className="w-1/4 h-1/2 border-2 flex items-center  flex-col bg-black rounded-xl border-none">
+          <h2 className="text-white m-10">LyricLink</h2>
+           <button className=" w-32 h-10 border-2 absolute top-1/2 bg-green-700 rounded-xl border-none" onClick={handleLogin}>Login to Spotify</button>
+         </div>
+         </div>
       )}
     </div>
   );
