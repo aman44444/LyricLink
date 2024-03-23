@@ -1,10 +1,13 @@
 import React from "react"
 import "../app/globals.css"
-import Main from "./Pages/welcomePage/page"
+import WebApp from "./webapp/page"
+
 export default function Home() {
   return (
    <div >
-      <Main/>
+    <div className="flex justify-center align-middle">
+     <WebApp/>
+    </div>
    </div>
   )
 }
