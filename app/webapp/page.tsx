@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Layout from "../components/Home/Layout/Page";
+import styles from "./Button.module.css"
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -75,8 +76,8 @@ const WebApp: React.FC = () => {
       ) : (
         <div className="flex justify-center items-center w-screen h-screen  bg-neutral-800 ">
           <div className="w-1/4 h-1/2 border-2 flex items-center  flex-col bg-black rounded-xl border-none">
-          <h2 className="text-white m-10">LyricLink</h2>
-           <button className=" w-32 h-10 border-2 absolute top-1/2 bg-green-700 rounded-xl border-none" onClick={handleLogin}>Login to Spotify</button>
+          <h2 className="text-white m-10 text-3xl font-bold">LyricLink</h2>
+           <button className="w-32 h-12 border-none bg-green-700 absolute top-2/4 text-white rounded-xl" onClick={handleLogin}>Login to Spotify</button>
          </div>
          </div>
       )}

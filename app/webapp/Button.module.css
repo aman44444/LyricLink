@@ -1,0 +1,28 @@
+/* .spotifyButton {
+   
+    
+  } */
+  
+  /* .spotifyButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .spotifyButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.15) 75%);
+    animation: spotify 2s infinite linear;
+  }
+   */
+  /* @keyframes move {
+    0%   { left: 0; opacity: 0; }
+    5%   { opacity: 0; }
+    48%  { opacity: 0.2; }
+    80%  { opacity: 0; }
+    100% { left: 82%; }
+  } */
