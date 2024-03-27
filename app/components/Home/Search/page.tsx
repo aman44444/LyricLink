@@ -30,12 +30,13 @@ const Search: React.FC = () => {
   
     <div>
       <input
+       className="rounded-xl w-1/2 mx-6 p-1"
         type="text"
         placeholder="Search for music..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button className="border-2 rounded-xl p-1" onClick={handleSearch}>Search</button>
 
      
       <ul>
