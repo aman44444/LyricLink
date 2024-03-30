@@ -74,29 +74,79 @@ export const getNewReleases = async (): Promise<any[]> => {
     }
 };
 
-export const fetchUserData = async ( ): Promise<any> => {
+// export const fetchUserData = async ( ): Promise<any> => {
+//   try {
+//     const accessToken = localStorage.getItem("accessToken");
+//         if (!accessToken) {
+//             throw new Error("Access token not found");
+//         }
+
+//         const response = await fetch("https://api.spotify.com/v1/me", {
+//             headers: {
+//                 Authorization: `Bearer ${accessToken}`,
+//             },
+//         });
+
+//         if (!response.ok) {
+//             throw new Error("Failed to fetch new releases");
+//         }
+    
+//     const userData = await response.json();
+//     return userData;
+//   } catch (error) {
+//     console.error("Error fetching user data:", error);
+//     throw error;
+//   }
+// };
+
+export const fetchUserData = async (): Promise<any> => {
   try {
     const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-            throw new Error("Access token not found");
-        }
+    if (!accessToken) {
+      throw new Error("Access token not found");
+    }
 
-        const response = await fetch("https://api.spotify.com/v1/me", {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
+    const response = await fetch("https://api.spotify.com/v1/me", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch new releases");
-        }
-    
+    if (!response.ok) {
+      throw new Error("Failed to fetch user data");
+    }
+
     const userData = await response.json();
-    return userData;
+
+    // Extract additional user information
+    const { display_name, email, images, birthdate, country } = userData;
+    const profilePicture = images && images.length > 0 ? images[0].url : null;
+    // Calculate age if birthdate is provided
+    const age = birthdate ? calculateAge(birthdate) : null;
+
+    return {
+      display_name,
+      email,
+      profilePicture,
+      age,
+      country,
+      // Add more user information here if needed
+    };
   } catch (error) {
     console.error("Error fetching user data:", error);
     throw error;
   }
+};
+
+const calculateAge = (birthdate: string): number | null => {
+  const birthDate = new Date(birthdate);
+  const currentDate = new Date();
+  const ageDiff = currentDate.getFullYear() - birthDate.getFullYear();
+  const isBirthdayPassed =
+    currentDate.getMonth() > birthDate.getMonth() ||
+    (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() >= birthDate.getDate());
+
+  return isBirthdayPassed ? ageDiff : ageDiff - 1;
 };
 
 export const fetchUserPlaylists = async (): Promise<any> => {
