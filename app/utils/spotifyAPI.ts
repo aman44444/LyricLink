@@ -94,17 +94,12 @@ export const fetchUserData = async (): Promise<any> => {
 
     const userData = await response.json();
 
-    
-    const { display_name, images, birthdate,  } = userData;
-    
-    // Calculate age if birthdate is provided
-    const age = birthdate ? calculateAge(birthdate) : null;
+    const { display_name, images } = userData;
+
 
     return {
       display_name,
-     images,
-      age,
-     
+      images,
     };
   } catch (error) {
     console.error("Error fetching user data:", error);
@@ -112,16 +107,7 @@ export const fetchUserData = async (): Promise<any> => {
   }
 };
 
-const calculateAge = (birthdate: string): number | null => {
-  const birthDate = new Date(birthdate);
-  const currentDate = new Date();
-  const ageDiff = currentDate.getFullYear() - birthDate.getFullYear();
-  const isBirthdayPassed =
-    currentDate.getMonth() > birthDate.getMonth() ||
-    (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() >= birthDate.getDate());
 
-  return isBirthdayPassed ? ageDiff : ageDiff - 1;
-};
 
 export const fetchUserPlaylists = async (): Promise<any> => {
   try {
