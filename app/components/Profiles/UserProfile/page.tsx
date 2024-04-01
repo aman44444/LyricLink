@@ -36,8 +36,7 @@ const UserProfile: React.FC = () => {
         <>
           <h2>Welcome, {userData.display_name}</h2>
           {/* <p> {userData.email}</p> */}
-          {userData.images && <img src={userData.images} alt="Profile" />}
-          {userData.age && <p>Age: {userData.age}</p>}
+          {userData.images && <img src={userData.images[0]?.url} alt="Profile" />}
         </>
       ) : (
         <p>Loading user data...</p>

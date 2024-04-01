@@ -6,6 +6,7 @@ import UserProfile from "../../Profiles/UserProfile/page";
 import { GoHome } from "react-icons/go";
 import { GoSearch } from "react-icons/go";
 import UserPlaylists from "../../Player/Playlist/page";
+import MatchedUsers from "../../Dating/MatchedUsers/page";
 
 const Layout: React.FC = () => {
   const [currentPage, setCurrentPage] =  useState<"Home" | "Search" | "Profile" | "Settings" | "Playlist">("Home");
@@ -49,7 +50,7 @@ const Layout: React.FC = () => {
           </ul>
         </div>
         <div className=" border-black h-3/4 w-full border-2 bg-neutral-800 rounded-md mt-2 ">
-
+           <MatchedUsers/>
         </div>
       </div>
         <div className="h-full w-4/5  bg-neutral-800 rounded-md overflow:hidden;">
