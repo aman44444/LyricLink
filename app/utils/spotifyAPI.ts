@@ -95,11 +95,11 @@ export const fetchUserData = async (): Promise<any> => {
     const userData = await response.json();
 
     const { display_name, images } = userData;
-
+    
 
     return {
       display_name,
-      images,
+      images
     };
   } catch (error) {
     console.error("Error fetching user data:", error);
