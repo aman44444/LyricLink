@@ -81,7 +81,7 @@ const WebApp: React.FC = () => {
           <FaLink size="80px" />
           <h2 className="text-black m-3 text-7xl font-bold">LyricLink</h2>
           </div>
-           <button className="w-32 h-12 border-none bg-black absolute top-2/4 text-white rounded-xl" onClick={handleLogin}>Login to Spotify</button>
+           <button className="w-32 h-12 border-none bg-black absolute top-2/4 text-green-800 rounded-xl" onClick={handleLogin}>Login to Spotify</button>
          </div>
          </div>
       )}

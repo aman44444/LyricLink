@@ -21,7 +21,7 @@ const UserProfile: React.FC = () => {
         const usersCollectionRef = collection(firestore, 'users');
         const userDocRef = doc(usersCollectionRef, 'userId'); 
         await setDoc(userDocRef, userData);
-        console.log('User data saved to Firebase:', userData);
+        
       } else {
         console.warn('User data does not contain a valid email. Skipping saving to Firebase.');
       }
