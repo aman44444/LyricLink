@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchUserData } from "@/app/utils/spotifyAPI";
+import { fetchUserData,fetchTopTracks, fetchTopArtists, } from "@/app/utils/spotifyAPI";
 import { firestore } from "@/app/utils/firebase.config";
 import { collection, doc, setDoc } from "@firebase/firestore";
 
@@ -10,7 +10,7 @@ const UserProfile: React.FC = () => {
     fetchUserData()
       .then(data => {
         setUserData(data);
-        saveUserDataToFirebase(data);
+        saveUserDataToFirebase(data);  
       })
       .catch(error => console.error('Error fetching user data:', error));
   }, []);
@@ -46,3 +46,5 @@ const UserProfile: React.FC = () => {
 };
 
 export default UserProfile;
+
+

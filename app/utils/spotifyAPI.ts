@@ -160,6 +160,46 @@ export const fetchPlaylistTracks = async (playlistId: string): Promise<any[]> =>
 };
 
   
+export const fetchTopTracks = async (accessToken: string): Promise<any[]> => {
+  try {
+    const response = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=5", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch top tracks");
+    }
+
+    const data = await response.json();
+    return data.items;
+  } catch (error) {
+    console.error("Error fetching top tracks:", error);
+    throw error;
+  }
+};
+
+export const fetchTopArtists = async (accessToken: string): Promise<any[]> => {
+  try {
+    const response = await fetch("https://api.spotify.com/v1/me/top/artists?limit=5", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch top artists");
+    }
+
+    const data = await response.json();
+    return data.items;
+  } catch (error) {
+    console.error("Error fetching top artists:", error);
+    throw error;
+  }
+};
+
 
 
 
