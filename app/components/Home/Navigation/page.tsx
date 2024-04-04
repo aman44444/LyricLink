@@ -83,6 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick, onPlay
           </button>
         </div>
       </div>
+      
       </div>
     </>
   );
