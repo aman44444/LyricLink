@@ -160,49 +160,52 @@ export const fetchPlaylistTracks = async (playlistId: string): Promise<any[]> =>
 };
 
   
-export const fetchTopTracks = async (accessToken: string): Promise<any[]> => {
-  try {
-    const response = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=5", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+// export const fetchTopTracks = async (): Promise<Response> => {
+//   try {
+//     const accessToken = localStorage.getItem("accessToken");
+//     if (!accessToken) {
+//       throw new Error("Access token not found");
+//     }
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch top tracks");
-    }
+//     const response = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//     });
 
-    const data = await response.json();
-    return data.items;
-  } catch (error) {
-    console.error("Error fetching top tracks:", error);
-    throw error;
-  }
-};
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch top tracks");
+//     }
 
-export const fetchTopArtists = async (accessToken: string): Promise<any[]> => {
-  try {
-    const response = await fetch("https://api.spotify.com/v1/me/top/artists?limit=5", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+//     return response;
+//   } catch (error) {
+//     console.error("Error fetching top tracks:", error);
+//     throw error;
+//   }
+// };
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch top artists");
-    }
+// export const fetchTopArtists = async (): Promise<Response> => {
+//   try {
+//     const accessToken = localStorage.getItem("accessToken");
+//     if (!accessToken) {
+//       throw new Error("Access token not found");
+//     }
 
-    const data = await response.json();
-    return data.items;
-  } catch (error) {
-    console.error("Error fetching top artists:", error);
-    throw error;
-  }
-};
+//     const response = await fetch("https://api.spotify.com/v1/me/top/artists", {
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//     });
 
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch top artists");
+//     }
 
-
-
- 
+//     return response;
+//   } catch (error) {
+//     console.error("Error fetching top artists:", error);
+//     throw error;
+//   }
+// };
 
 

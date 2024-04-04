@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchUserData,fetchTopTracks, fetchTopArtists, } from "@/app/utils/spotifyAPI";
+import { fetchUserData } from "@/app/utils/spotifyAPI";
 import { firestore } from "@/app/utils/firebase.config";
 import { collection, doc, setDoc } from "@firebase/firestore";
 
@@ -46,5 +46,7 @@ const UserProfile: React.FC = () => {
 };
 
 export default UserProfile;
+
+
 
 
