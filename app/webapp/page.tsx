@@ -10,6 +10,7 @@ const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/webapp";
 const SPACE_DELIMITER = "%20";
 const SCOPES = [
+  "user-top-read",
   "user-read-currently-playing",
   "user-read-playback-state",
   "playlist-read-private",
