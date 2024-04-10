@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { fetchUserData } from "@/app/utils/spotifyAPI";
 import { firestore } from "@/app/utils/firebase.config";
-import { collection, doc, setDoc } from "@firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 const UserProfile: React.FC = () => {
   const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {
-    fetchUserData()
-      .then(data => {
-        setUserData(data);
-        saveUserDataToFirebase(data);  
-      })
-      .catch(error => console.error('Error fetching user data:', error));
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      fetchUserData()
+        .then((data) => {
+          setUserData(data);
+          saveUserDataToFirebase(data);
+        })
+        .catch((error) => console.error("Error fetching user data:", error));
+    }
   }, []);
 
   const saveUserDataToFirebase = async (userData: any) => {
     try {
-      if (userData ) {
-        const usersCollectionRef = collection(firestore, 'users');
-        const userDocRef = doc(usersCollectionRef, 'userId'); 
+      if (userData) {
+        const userId = userData.id;
+        const userDocRef = doc(firestore, "users", userId);
         await setDoc(userDocRef, userData);
-        
+        console.log("User data saved to Firestore");
       } else {
-        console.warn('User data does not contain a valid email. Skipping saving to Firebase.');
+        console.warn("User data is empty. Skipping saving to Firebase.");
       }
     } catch (error) {
-      console.error('Error saving user data to Firebase:', error);
+      console.error("Error saving user data to Firebase:", error);
     }
   };
 
@@ -35,8 +38,9 @@ const UserProfile: React.FC = () => {
       {userData ? (
         <>
           <h2>Welcome, {userData.display_name}</h2>
-          {/* <p> {userData.email}</p> */}
-          {userData.images && <img src={userData.images[0]?.url} alt="Profile" />}
+          {userData.images && (
+            <img src={userData.images[0]?.url} alt="Profile" />
+          )}
         </>
       ) : (
         <p>Loading user data...</p>
@@ -46,7 +50,6 @@ const UserProfile: React.FC = () => {
 };
 
 export default UserProfile;
-
 
 
 
