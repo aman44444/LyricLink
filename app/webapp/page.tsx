@@ -28,7 +28,7 @@ const getReturnedParamsFromSpotifyAuth = (hash: string) => {
 
   return paramsSplitUp;
 };
-
+0
 const WebApp: React.FC = () => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -63,7 +63,7 @@ const WebApp: React.FC = () => {
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
-  };
+
 
   const handleLogin = () => {
     window.location.href = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAM}&response_type=token&show_dialog=true`;
@@ -91,4 +91,3 @@ const WebApp: React.FC = () => {
 };
 
 export default WebApp;
-

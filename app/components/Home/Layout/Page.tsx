@@ -8,7 +8,12 @@ import { GoSearch } from "react-icons/go";
 import UserPlaylists from "../../Player/Playlist/page";
 import MatchedUsers from "../../Dating/MatchedUsers/page";
 
-const Layout: React.FC = () => {
+interface LayoutProps {
+  onLogout: () => void;
+}
+
+
+const Layout: React.FC<LayoutProps> = ({ onLogout }) => {
   const [currentPage, setCurrentPage] =  useState<"Home" | "Search" | "Profile" | "Settings" | "Playlist">("Home");
 
   const handleHomeClick = () => {
