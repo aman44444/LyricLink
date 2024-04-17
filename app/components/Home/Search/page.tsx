@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import { searchSpotify } from "@/app/utils/spotifyAPI";
-import MusicPlayer from "../../Player/MusicPlayer/page";
+
 
 
 const Search: React.FC = () => {
@@ -54,7 +54,6 @@ const Search: React.FC = () => {
           <h3>Now Playing</h3>
           <p>{selectedTrack.name} - {selectedTrack.artists.map((artist: any) => artist.name).join(", ")}</p>
          
-          <MusicPlayer track={selectedTrack}  />
         </div>
       )}
     </div>
