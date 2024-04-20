@@ -13,7 +13,7 @@ interface LayoutProps {
 }
 
 
-const Layout: React.FC<LayoutProps> = ({ onLogout }) => {
+const Layout: React.FC = () => {
   const [currentPage, setCurrentPage] =  useState<"Home" | "Search" | "Profile" | "Settings" | "Playlist">("Home");
 
   const handleHomeClick = () => {
