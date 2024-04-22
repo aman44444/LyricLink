@@ -61,21 +61,15 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
          
         </div>
         <div className="border-neutral-800 h-screen w-full border-2 bg-black rounded-md sm:h-4/6" style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
-       
           <MatchedUsers currentUserId={currentUserId} />
-       
         </div>
       </div>
-        <div className="h-screen w-full overflow:hidden bg-black pt-5 rounded-md  snap-start sm:h-full sm:w-5/6">
-       
-          {currentPage === "Home" ? <HomePage /> :
-         currentPage === "Profile" ? <UserProfile /> : 
-         currentPage === "Playlist" ? <UserPlaylists/>:
-         currentPage === "Settings" ? <Settings/>:null}
-        
-     </div>
-     
-      
+      <div className="h-screen w-full overflow:hidden bg-black pt-5 rounded-md  snap-start sm:h-full sm:w-5/6">
+         {currentPage === "Home" ? <HomePage /> :
+          currentPage === "Profile" ? <UserProfile /> : 
+          currentPage === "Playlist" ? <UserPlaylists/>:
+          currentPage === "Settings" ? <Settings/>:null}
+      </div> 
     </div>
   );
 };
