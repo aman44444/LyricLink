@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import HomePage from "../HomePage/HomePage";
-import Search from "../Search/page";
 import Navbar from "../Navigation/page";
 import UserProfile from "../../Profiles/UserProfile/page";
 import { GoHome } from "react-icons/go";
@@ -64,8 +63,7 @@ const Layout: React.FC = () => {
           onSettingsClick={handleSettingsClick}
           onPlaylistClick={handlePlaylistClick}
         />
-          {currentPage === "Home" ? <HomePage /> : 
-           currentPage === "Search" ? <Search/>:
+          {currentPage === "Home" ? <HomePage /> :
          currentPage === "Profile" ? <UserProfile /> : 
          currentPage === "Playlist" ? <UserPlaylists/>:null}
         {/* //  currentPage === "Settings" ? <Settings />  */}

@@ -30,7 +30,7 @@ export const searchSpotify = async (query: string): Promise<any[]> => {
             throw new Error("Access token not found");
         }
 
-        const response = await fetch("https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA", {
+        const response = await fetch('https://api.spotify.com/v1/recommendations?limit=5&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA', {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -166,7 +166,7 @@ export const fetchTopTracks = async (): Promise<any[]> => {
       throw new Error("Access token not found");
     }
 
-    const response = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+    const response = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=5", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -191,7 +191,7 @@ export const fetchTopArtists = async (): Promise<any[]> => {
       throw new Error("Access token not found");
     }
 
-    const response = await fetch("https://api.spotify.com/v1/me/top/artists", {
+    const response = await fetch("https://api.spotify.com/v1/me/top/artists?limit=5", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
