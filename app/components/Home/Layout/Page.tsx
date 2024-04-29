@@ -39,9 +39,9 @@ const Layout: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex bg-black text-white p-2 ">
-      <div className="h-screen w-1/5 pr-2">
-        <div className="h-1/5 w-full bg-neutral-800 rounded-md flex flex-col justify-center " >
+    <div className="w-full h-full flex bg-black text-white p-2 ">
+      <div className="h-full w-1/6 pr-2">
+        <div className="h-2/6 w-full bg-neutral-800 rounded-md flex flex-col justify-center" >
           <ul>
             <li onClick={handleHomeClick} className="flex m-3">
               <GoHome size={30}/>
@@ -52,17 +52,18 @@ const Layout: React.FC = () => {
             <p className="ml-2 text-xl">Search</p>
             </li>
           </ul>
-        </div>
-        <div className=" border-black h-3/4 w-full border-2 bg-neutral-800 rounded-md mt-2 ">
-           <MatchedUsers/>
-        </div>
-      </div>
-        <div className="h-full w-4/5  bg-neutral-800 rounded-md overflow:hidden;">
-        <Navbar
+          <Navbar
           onProfileClick={handleProfileClick}
           onSettingsClick={handleSettingsClick}
           onPlaylistClick={handlePlaylistClick}
         />
+        </div>
+        <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md  ">
+           <MatchedUsers/>
+        </div>
+      </div>
+        <div className="h-full w-5/6 mb-3 bg-neutral-800 rounded-md overflow:hidden;">
+       
           {currentPage === "Home" ? <HomePage /> :
          currentPage === "Profile" ? <UserProfile /> : 
          currentPage === "Playlist" ? <UserPlaylists/>:null}

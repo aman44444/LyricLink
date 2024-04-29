@@ -70,7 +70,7 @@ const WebApp: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full h-screen">
       {isLoggedIn ? (
         <>
         <Layout/>
