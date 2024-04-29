@@ -21,15 +21,16 @@ const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick, onPlay
 
   return (
     <>
-    <div className="flex justify-end">
+    <div className="">
       <div className="bg- text-white p-4">
         <div className="flex items-center">
           <button
             className="text-white focus:outline-none"
             onClick={handleProfileIconClick}
           >
-            <CiSettings />
+            <CiSettings size={30} />
           </button>
+          <p className="ml-2 text-xl flex">Setting</p>
         </div>
       </div>
       {isModalOpen && (
@@ -79,8 +80,10 @@ const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick, onPlay
             className="text-white focus:outline-none"
             onClick={onPlaylistClick}
           >
-            <MdPlaylistPlay />
+            <MdPlaylistPlay size={30} />
+            
           </button>
+          <p className="ml-2 text-xl flex">Playlist</p>
         </div>
       </div>
       

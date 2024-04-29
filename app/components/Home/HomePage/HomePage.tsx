@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
 
     return (
         
-        <div className="overflow-hidden">
+     <div className="overflow-hidden ">
         <h2 className='ml-3'>Recommended Songs</h2>
         <div className="card-container flex ">
             {recommendedSongs.map((song: any) => (
