@@ -11,6 +11,7 @@ const UserProfile: React.FC = () => {
     if (accessToken) {
       fetchUserData()
         .then((data) => {
+          console.log("User data from fetchUserData:", data); 
           setUserData(data);
           saveUserDataToFirebase(data);
         })
@@ -20,13 +21,13 @@ const UserProfile: React.FC = () => {
 
   const saveUserDataToFirebase = async (userData: any) => {
     try {
-      if (userData) {
+      if (userData && userData.id) {
         const userId = userData.id;
         const userDocRef = doc(firestore, "users", userId);
         await setDoc(userDocRef, userData);
         console.log("User data saved to Firestore");
       } else {
-        console.warn("User data is empty. Skipping saving to Firebase.");
+        console.warn("User data is empty or does not contain an ID. Skipping saving to Firebase. UserData:", userData);
       }
     } catch (error) {
       console.error("Error saving user data to Firebase:", error);
