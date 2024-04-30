@@ -3,7 +3,6 @@ import HomePage from "../HomePage/HomePage";
 import Navbar from "../Navigation/page";
 import UserProfile from "../../Profiles/UserProfile/page";
 import { GoHome } from "react-icons/go";
-import { GoSearch } from "react-icons/go";
 import UserPlaylists from "../../Player/Playlist/page";
 import MatchedUsers from "../../Dating/MatchedUsers/page";
 
@@ -13,14 +12,10 @@ interface LayoutProps {
 
 
 const Layout: React.FC = () => {
-  const [currentPage, setCurrentPage] =  useState<"Home" | "Search" | "Profile" | "Settings" | "Playlist">("Home");
+  const [currentPage, setCurrentPage] =  useState<"Home"  | "Profile" | "Settings" | "Playlist">("Home");
 
   const handleHomeClick = () => {
     setCurrentPage("Home");
-  };
-
-  const handleSearchClick = () => {
-    setCurrentPage("Search");
   };
 
   const handleProfileClick = () => {
@@ -47,16 +42,15 @@ const Layout: React.FC = () => {
               <GoHome size={30}/>
               <p className="ml-2 text-xl">Home</p>
             </li>
-            <li onClick={handleSearchClick} className="flex m-3 ">
-              <GoSearch size={30}/>
-            <p className="ml-2 text-xl">Search</p>
-            </li>
-          </ul>
-          <Navbar
+            <li className="flex m-3 ">
+            <Navbar
           onProfileClick={handleProfileClick}
           onSettingsClick={handleSettingsClick}
           onPlaylistClick={handlePlaylistClick}
         />
+            </li>
+          </ul>
+         
         </div>
         <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md  ">
            <MatchedUsers/>
