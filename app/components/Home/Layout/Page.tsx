@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import HomePage from "../HomePage/HomePage";
-import Navbar from "../Navigation/page";
 import UserProfile from "../../Profiles/UserProfile/page";
 import { GoHome } from "react-icons/go";
 import UserPlaylists from "../../Player/Playlist/page";
 import MatchedUsers from "../../Dating/MatchedUsers/page";
+import { CgProfile } from "react-icons/cg";
+import { CgPlayList } from "react-icons/cg";
+import { CiSettings } from "react-icons/ci"; 
 
 interface LayoutProps {
   onLogout: () => void;
 }
-
 
 const Layout: React.FC = () => {
   const [currentPage, setCurrentPage] =  useState<"Home"  | "Profile" | "Settings" | "Playlist">("Home");
@@ -42,12 +43,17 @@ const Layout: React.FC = () => {
               <GoHome size={30}/>
               <p className="ml-2 text-xl">Home</p>
             </li>
-            <li className="flex m-3 ">
-            <Navbar
-          onProfileClick={handleProfileClick}
-          onSettingsClick={handleSettingsClick}
-          onPlaylistClick={handlePlaylistClick}
-        />
+            <li onClick={handleProfileClick} className="flex m-3 ">
+              <CgProfile size={30} />
+              <p className="ml-2 text-xl">Profile</p>
+            </li>
+            <li onClick={handlePlaylistClick} className="flex m-3 ">
+              <CgPlayList size={30}/>
+              <p className="ml-2 text-xl">Playlist</p>
+            </li>
+            <li onClick={handleSettingsClick} className="flex m-3 ">
+              <CiSettings size={30}/>
+              <p className="ml-2 text-xl">Settings</p>
             </li>
           </ul>
          
