@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import HomePage from "../HomePage/HomePage";
 import UserProfile from "../../Profiles/UserProfile/page";
-import { GoHome } from "react-icons/go";
 import UserPlaylists from "../../Player/Playlist/page";
 import MatchedUsers from "../../Dating/MatchedUsers/page";
-import { CgProfile } from "react-icons/cg";
-import { CgPlayList } from "react-icons/cg";
-import { CiSettings } from "react-icons/ci"; 
+import { GoHomeFill } from "react-icons/go";
+import { FaUser } from "react-icons/fa6";
+import { RiPlayList2Fill } from "react-icons/ri";
+import { IoSettingsSharp } from "react-icons/io5";
+import Settings from "../Setting/page";
 
-interface LayoutProps {
-  onLogout: () => void;
-}
 
 const Layout: React.FC = () => {
   const [currentPage, setCurrentPage] =  useState<"Home"  | "Profile" | "Settings" | "Playlist">("Home");
@@ -37,22 +35,22 @@ const Layout: React.FC = () => {
   return (
     <div className="w-full h-full flex bg-black text-white p-2 ">
       <div className="h-full w-1/6 pr-2">
-        <div className="h-2/6 w-full bg-neutral-800 rounded-md flex flex-col justify-center" >
+        <div className="h-2/6 w-full bg-neutral-800 rounded-md flex flex-col justify-center pl-8" >
           <ul>
             <li onClick={handleHomeClick} className="flex m-3">
-              <GoHome size={30}/>
+              <GoHomeFill size={30}/>
               <p className="ml-2 text-xl">Home</p>
             </li>
             <li onClick={handleProfileClick} className="flex m-3 ">
-              <CgProfile size={30} />
+             <FaUser size={30}/>
               <p className="ml-2 text-xl">Profile</p>
             </li>
             <li onClick={handlePlaylistClick} className="flex m-3 ">
-              <CgPlayList size={30}/>
+              <RiPlayList2Fill size={30}/>
               <p className="ml-2 text-xl">Playlist</p>
             </li>
             <li onClick={handleSettingsClick} className="flex m-3 ">
-              <CiSettings size={30}/>
+              <IoSettingsSharp size={30}/>
               <p className="ml-2 text-xl">Settings</p>
             </li>
           </ul>
@@ -66,8 +64,9 @@ const Layout: React.FC = () => {
        
           {currentPage === "Home" ? <HomePage /> :
          currentPage === "Profile" ? <UserProfile /> : 
-         currentPage === "Playlist" ? <UserPlaylists/>:null}
-        {/* //  currentPage === "Settings" ? <Settings />  */}
+         currentPage === "Playlist" ? <UserPlaylists/>:
+         currentPage === "Settings" ? <Settings/>:null}
+        
      </div>
      
       
