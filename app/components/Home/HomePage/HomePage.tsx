@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
             .then(data => setRecommendedSongs(data))
             .catch(error => console.error('Error fetching recommended songs:', error));
 
-         fetchTopTracks()
+        fetchTopTracks()
             .then(data => setTopTracks(data))
             .catch(error => console.error('Error fetching top tracks:', error));
 
@@ -26,45 +26,40 @@ const HomePage: React.FC = () => {
         }, []);
 
     return (
-        
      <div className="overflow-hidden ">
         <h2 className='ml-3'>Recommended Songs</h2>
         <div className="card-container flex ">
             {recommendedSongs.map((song: any) => (
                 <Card
-                key={song.id}
-                imageUrl={song.album.images[0].url}
-                title={song.name}
-               
-            />
+                   key={song.id}
+                   imageUrl={song.album.images[0].url}
+                   title={song.name}
+                 />
             ))}
         </div>
 
         <h2 className='ml-3'>Top Tracks</h2>
-            <div className="card-container flex">
+        <div className="card-container flex">
                 {topTracks.map((track: any) => (
                     <Card
                         key={track.id}
                         imageUrl={track.album.images[0].url}
-                        title={track.name}
-                        
+                        title={track.name}   
                     />
                 ))}
-            </div>
+         </div>
 
-            <h2 className='ml-3'>Top Artists</h2>
-           
-            <div className="card-container flex">
+        <h2 className='ml-3'>Top Artists</h2>
+        <div className="card-container flex">
                 {topArtists.map((artist: any) => (
                    <Card
-                   key={artist.id}
-                   imageUrl={artist.images[0].url}
-                   title={artist.name}
-                  
-               />
+                       key={artist.id}
+                       imageUrl={artist.images[0].url}
+                       title={artist.name}
+                    />
 
                 ))}
-            </div>
+        </div>
     </div>
    
 );
