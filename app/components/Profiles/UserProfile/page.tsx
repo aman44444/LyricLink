@@ -8,18 +8,17 @@ const UserProfile: React.FC = () => {
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
+    if (accessToken && !userData) { // Check if userData is not already fetched
       fetchUserData()
         .then((data) => {
-          console.log("User data from fetchUserData:", data); 
           setUserData(data);
-          saveUserDataToFirebase(data);
+          saveUserDataToFirestore(data); // Save user data to Firestore
         })
         .catch((error) => console.error("Error fetching user data:", error));
     }
-  }, []);
+  }, [userData]); // Include userData in the dependency array
 
-  const saveUserDataToFirebase = async (userData: any) => {
+  const saveUserDataToFirestore = async (userData: any) => {
     try {
       if (userData && userData.id) {
         const userId = userData.id;
@@ -51,6 +50,4 @@ const UserProfile: React.FC = () => {
 };
 
 export default UserProfile;
-
-
 

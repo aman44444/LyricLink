@@ -74,7 +74,7 @@ export const getNewReleases = async (): Promise<any[]> => {
     }
 };
 
-        
+
 export const fetchUserData = async (): Promise<any> => {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -94,10 +94,15 @@ export const fetchUserData = async (): Promise<any> => {
 
     const userData = await response.json();
 
-    const { display_name, images } = userData;
     
+    if (!userData.id) {
+      throw new Error("User ID not found in user data");
+    }
+
+    const { display_name, images } = userData;
 
     return {
+      id: userData.id,
       display_name,
       images
     };
