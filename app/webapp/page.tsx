@@ -35,7 +35,7 @@ const WebApp: React.FC = () => {
   const [userData, setUserData] = useState<any>(null); 
 
   useEffect(() => {
-    if (window.location.hash) {
+    if (window.location.hash && !isLoggedIn) {
       const { access_token, expires_in, token_type } = getReturnedParamsFromSpotifyAuth(
         window.location.hash
       );
@@ -47,9 +47,9 @@ const WebApp: React.FC = () => {
       
       setIsLoggedIn(true);
       fetchUserData(access_token); 
-      router.push("/webapp");
+      router.push("/webapp"); 
     }
-  }, [router]);
+  }, [router, isLoggedIn]);
 
   const fetchUserData = async (accessToken: string) => {
     try {

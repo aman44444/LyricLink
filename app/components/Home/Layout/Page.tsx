@@ -35,7 +35,7 @@ const Layout: React.FC = () => {
   return (
     <div className="w-full h-full flex bg-black text-white p-2 ">
       <div className="h-full w-1/6 pr-2">
-        <div className="h-2/6 w-full bg-neutral-800 rounded-md flex flex-col justify-center pl-8" >
+        <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-6" >
           <ul>
             <li onClick={handleHomeClick} className="flex m-3">
               <GoHomeFill size={30}/>
