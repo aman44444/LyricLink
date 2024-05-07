@@ -8,9 +8,11 @@ import { FaUser } from "react-icons/fa6";
 import { RiPlayList2Fill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
 import Settings from "../Setting/page";
+import StartMatchingButton from "../../Dating/MatchStart/page";
 
 
 const Layout: React.FC = () => {
+  const [matchingStarted, setMatchingStarted] = useState(false);
   const [currentPage, setCurrentPage] =  useState<"Home"  | "Profile" | "Settings" | "Playlist">("Home");
 
   const handleHomeClick = () => {
@@ -30,6 +32,10 @@ const Layout: React.FC = () => {
   const handlePlaylistClick = () => {
     setCurrentPage("Playlist"); 
    
+  };
+
+  const handleStartMatching = () => {
+    setMatchingStarted(true);
   };
 
   return (
@@ -57,7 +63,11 @@ const Layout: React.FC = () => {
          
         </div>
         <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md  ">
-           <MatchedUsers/>
+        {matchingStarted ? (
+          <MatchedUsers />
+        ) : (
+          <StartMatchingButton />
+        )}
         </div>
       </div>
         <div className="h-full w-5/6 mb-3 bg-neutral-800 rounded-md overflow:hidden;">
