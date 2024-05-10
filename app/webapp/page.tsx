@@ -76,8 +76,8 @@ const WebApp: React.FC = () => {
         <Layout/>
         </>
       ) : (
-        <div className="flex justify-center items-center w-screen h-screen  bg-green-800 ">
-          <div className="w-1/4 h-1/2 border-2 flex items-center  flex-col bg-green-800 rounded-xl border-none">
+        <div className="flex justify-center items-center w-screen h-screen " style={{ backgroundImage: "url('images.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
+          <div className="w-1/4 h-1/2 border-2 flex items-center  flex-col rounded-xl border-none">
           <div className="flex m-10  items-center">
           <FaLink size="80px" />
           <h2 className="text-black m-3 text-7xl font-bold">LyricLink</h2>
