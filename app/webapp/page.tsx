@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Layout from "../components/Home/Layout/Page";
-import styles from "./Button.module.css"
 import { FaLink } from "react-icons/fa6";
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
@@ -76,13 +75,13 @@ const WebApp: React.FC = () => {
         <Layout/>
         </>
       ) : (
-        <div className="flex justify-center items-center w-screen h-screen " style={{ backgroundImage: "url('images.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
+        <div className="flex justify-center items-center w-screen h-screen " style={{ backgroundImage: "url('bgimg.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
           <div className="w-1/4 h-1/2 border-2 flex items-center  flex-col rounded-xl border-none">
           <div className="flex m-10  items-center">
           <FaLink size="80px" />
           <h2 className="text-black m-3 text-7xl font-bold">LyricLink</h2>
           </div>
-           <button className="w-32 h-12 border-none bg-black absolute top-2/4 text-green-800 rounded-xl" onClick={handleLogin}>Login to Spotify</button>
+           <button className="w-36 h-12 border-none bg-black absolute top-2/4 text-white rounded-full left-82" onClick={handleLogin}>Login to Spotify</button>
          </div>
          </div>
       )}
