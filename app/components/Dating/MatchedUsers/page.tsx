@@ -6,6 +6,8 @@ import { UserData } from "@/app/interface/types";
 
 const MatchedUsers: React.FC = () => {
   const [users, setUsers] = useState<UserData[]>([]);
+  const [matchedUsers, setMatchedUsers] = useState<UserData[]>([]);
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -18,6 +20,8 @@ const MatchedUsers: React.FC = () => {
             id: doc.id,
             display_name: data.display_name,
             images: data.images,
+            topArtists: data.topArtists,
+            topTracks: data.topTracks,
           };
         });
         setUsers(usersData);
@@ -29,12 +33,16 @@ const MatchedUsers: React.FC = () => {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    console.log("Matched users:", matchedUsers); 
+  }, [matchedUsers]);
+
   return (
     <div>
-      <h1> Profiles</h1>
+      <h1>Profiles</h1>
       <div className="card-container">
         {users.map(user => (
-          <MatchCard key={user.id} user={user} />
+          <MatchCard key={user.id} user={user} /> // Pass user data to MatchCard component
         ))}
       </div>
     </div>
