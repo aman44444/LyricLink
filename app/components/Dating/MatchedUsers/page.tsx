@@ -4,7 +4,7 @@ import { collection, getDocs, DocumentData, doc, setDoc } from "firebase/firesto
 import { UserData } from "@/app/interface/types";
 import { fetchUserData, fetchTopArtists, fetchTopTracks } from "@/app/utils/spotifyAPI";
 
-// Function to calculate Jaccard similarity
+
 const jaccardSimilarity = (set1: Set<string>, set2: Set<string>): number => {
     const intersection = new Set([...set1].filter(x => set2.has(x)));
     const union = new Set([...set1, ...set2]);
@@ -12,25 +12,25 @@ const jaccardSimilarity = (set1: Set<string>, set2: Set<string>): number => {
 }
 
 const MatchedUsers: React.FC = () => {
-  // State variables
+  
   const [users, setUsers] = useState<UserData[]>([]);
   const [matchedUsers, setMatchedUsers] = useState<UserData[]>([]);
   const [matchingStarted, setMatchingStarted] = useState(false);
   const [noMatchFound, setNoMatchFound] = useState(false);
 
   useEffect(() => {
-    // Function to fetch users from Firestore
+  
     const fetchUsers = async () => {
       try {
         const usersCollection = collection(firestore, "users");
         const usersSnapshot = await getDocs(usersCollection);
         const usersData: UserData[] = usersSnapshot.docs.map(doc => {
           const data = doc.data() as DocumentData;
-          // Access display_name and images fields properly
+         
           return {
             id: doc.id,
-            display_name: data.userData.display_name , // Provide a default value if display_name is undefined
-            images: data.userData.images , // Provide an empty array if images is undefined
+            display_name: data.userData.display_name ,
+            images: data.userData.images , 
             topArtists: data.topArtists,
             topTracks: data.topTracks,
           };
@@ -48,7 +48,7 @@ const MatchedUsers: React.FC = () => {
   // Function to start the matching process
   const handleStartMatching = async () => {
     try {
-      // Send user data to Firebase
+      
       const [userData, topArtists, topTracks] = await Promise.all([fetchUserData(), fetchTopArtists(), fetchTopTracks()]);
       const userRef = doc(collection(firestore, "users"), userData.id);
       await setDoc(userRef, {
@@ -66,14 +66,14 @@ const MatchedUsers: React.FC = () => {
 
   useEffect(() => {
     // Function to match users
-   // Function to match users
+  
 const matchUsers = () => {
   if (!matchingStarted || users.length === 0) return;
 
-  const threshold = 0.1; // Define your threshold here
+  const threshold = 0.1; 
   const matches: UserData[] = [];
   
-  // Assuming you have the current user's ID available
+
   const currentUserID = "your_current_user_id_here"; 
 
   for (let i = 0; i < users.length; i++) {
