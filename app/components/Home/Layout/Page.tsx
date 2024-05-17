@@ -61,13 +61,13 @@ const Layout: React.FC = () => {
           </ul>
          
         </div>
-        <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md  ">
+        <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md " style={{ backgroundImage: "url('match2.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
        
           <MatchedUsers />
        
         </div>
       </div>
-        <div className="h-full w-5/6 mb-3 bg-neutral-800 rounded-md overflow:hidden;">
+        <div className="h-full w-5/6 mb-3  bg-neutral-800 rounded-md overflow:hidden;">
        
           {currentPage === "Home" ? <HomePage /> :
          currentPage === "Profile" ? <UserProfile /> : 
