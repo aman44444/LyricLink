@@ -56,6 +56,7 @@ const HomePage: React.FC = () => {
             </div>
 
             <h2 className='ml-3'>Top Artists</h2>
+           
             <div className="card-container flex">
                 {topArtists.map((artist: any) => (
                    <Card
@@ -67,6 +68,7 @@ const HomePage: React.FC = () => {
 
                 ))}
             </div>
+           
 
         {/* <h2>New Releases</h2>
         <div className="card-container flex ">

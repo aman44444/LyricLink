@@ -8,15 +8,15 @@ const UserProfile: React.FC = () => {
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-    if (accessToken && !userData) { // Check if userData is not already fetched
+    if (accessToken && !userData) { 
       fetchUserData()
         .then((data) => {
           setUserData(data);
-          saveUserDataToFirestore(data); // Save user data to Firestore
+          saveUserDataToFirestore(data); 
         })
         .catch((error) => console.error("Error fetching user data:", error));
     }
-  }, [userData]); // Include userData in the dependency array
+  }, [userData]);
 
   const saveUserDataToFirestore = async (userData: any) => {
     try {
@@ -34,13 +34,15 @@ const UserProfile: React.FC = () => {
   };
 
   return (
-    <div>
+    <div >
       {userData ? (
         <>
-          <h2>Welcome, {userData.display_name}</h2>
+        <div className="flex items-center">
           {userData.images && (
-            <img src={userData.images[0]?.url} alt="Profile" />
+            <img src={userData.images[0]?.url} alt="Profile" className="w-40 h-40 rounded-full" />
           )}
+          <h5 className="text-2xl ml-3"> {userData.display_name}</h5>
+        </div>
         </>
       ) : (
         <p>Loading user data...</p>
