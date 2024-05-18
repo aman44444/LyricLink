@@ -107,22 +107,26 @@ const MatchedUsers: React.FC = () => {
     }, [matchingStarted, users]);
 
     return (
-        <div>
-            <h1>Profiles</h1>
+        <div className="h-5/6">
+            <h1 className=" text-xl font-semibold w-1/2 h-8 bg-lime-50 rounded-full text-black m-4 flex justify-center">Profiles</h1>
             {!matchingStarted && !matchedUsers.length ? (
                 <button onClick={handleStartMatching}>Start Matching</button>
             ) : matchedUsers.length ? (
-                <div className="flex flex-wrap justify-center">
+              <div className="w-full h-5/6 flex flex-wrap justify-center">
+                  
                     {matchedUsers.map(user => (
-                        <div key={user.id} className="flex flex-col items-center mx-4 mb-4">
+                        <div key={user.id} className=" w-full h-full flex flex-col mx-4 mb-4 bg-white shadow-lg rounded-lg overflow-hidden p-2">
+                           <div className="border-2 border-green-900 w-full h-4/6 flex justify-center items-center rounded-lg">
                             {user.images && user.images.length > 0 && (
-                                <img className="w-24 h-24 rounded-full object-cover" src={user.images[0]?.url} alt="Profile" />
+                                <img className="w-24 h-24 rounded-full object-cover mt-4" src={user.images[0]?.url} alt="Profile" />
                             )}
-                            <div className="mt-2">
-                                <h2 className="text-2xl font-semibold mb-2 text-black">{user.display_name}</h2>
+                          </div>
+                            <div className="mt-6 w-1/2 h-8 bg-green-300 rounded-full pl-2">
+                                <h2 className="text-xl font-semibold mb-2 text-green-950">{user.display_name}</h2>
                             </div>
                         </div>
                     ))}
+                    
                 </div>
             ) : noMatchFound ? (
                 <p>No matches found</p>

@@ -40,7 +40,7 @@ const Layout: React.FC = () => {
   return (
     <div className="w-full h-full flex bg-black text-white p-2 ">
       <div className="h-full w-1/6 pr-2">
-        <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-6" >
+        <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-4" >
           <ul>
             <li onClick={handleHomeClick} className="flex m-3">
               <GoHomeFill size={30}/>
@@ -61,13 +61,13 @@ const Layout: React.FC = () => {
           </ul>
          
         </div>
-        <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md " style={{ backgroundImage: "url('match2.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
+        <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md " style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
        
           <MatchedUsers />
        
         </div>
       </div>
-        <div className="h-full w-5/6 mb-3  bg-neutral-800 rounded-md overflow:hidden;">
+        <div className="h-full w-5/6 mb-3 bg-neutral-800 pt-5 rounded-md overflow:hidden;">
        
           {currentPage === "Home" ? <HomePage /> :
          currentPage === "Profile" ? <UserProfile /> : 
