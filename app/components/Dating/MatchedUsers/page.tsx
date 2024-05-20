@@ -108,12 +108,13 @@ const MatchedUsers: React.FC = () => {
 
     return (
         <div className="h-5/6">
-            <h1 className=" text-xl font-semibold w-1/2 h-8 bg-lime-50 rounded-full text-black m-4 flex justify-center">Profiles</h1>
+            
             {!matchingStarted && !matchedUsers.length ? (
                 <button onClick={handleStartMatching}>Start Matching</button>
             ) : matchedUsers.length ? (
-              <div className="w-full h-5/6 flex flex-wrap justify-center">
-                  
+                
+              <div className="w-full h-5/6 flex flex-wrap ">
+                  <h1 className=" text-xl font-semibold w-1/2 h-8 bg-lime-50 rounded-full text-black m-4 flex justify-center">Profiles</h1>
                     {matchedUsers.map(user => (
                         <div key={user.id} className=" w-full h-full flex flex-col mx-4 mb-4 bg-white shadow-lg rounded-lg overflow-hidden p-2">
                            <div className="border-2 border-green-900 w-full h-4/6 flex justify-center items-center rounded-lg">

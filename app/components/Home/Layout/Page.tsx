@@ -42,19 +42,19 @@ const Layout: React.FC = () => {
       <div className="h-full w-1/6 pr-2">
         <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-4" >
           <ul>
-            <li onClick={handleHomeClick} className="flex m-3">
+            <li onClick={handleHomeClick} className="flex m-3 cursor-pointer">
               <GoHomeFill size={30}/>
               <p className="ml-2 text-xl">Home</p>
             </li>
-            <li onClick={handleProfileClick} className="flex m-3 ">
+            <li onClick={handleProfileClick} className="flex m-3 cursor-pointer">
              <FaUser size={30}/>
               <p className="ml-2 text-xl">Profile</p>
             </li>
-            <li onClick={handlePlaylistClick} className="flex m-3 ">
+            <li onClick={handlePlaylistClick} className="flex m-3 cursor-pointer">
               <RiPlayList2Fill size={30}/>
               <p className="ml-2 text-xl">Playlist</p>
             </li>
-            <li onClick={handleSettingsClick} className="flex m-3 ">
+            <li onClick={handleSettingsClick} className="flex m-3 cursor-pointer">
               <IoSettingsSharp size={30}/>
               <p className="ml-2 text-xl">Settings</p>
             </li>
