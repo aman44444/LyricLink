@@ -107,10 +107,10 @@ const MatchedUsers: React.FC = () => {
     }, [matchingStarted, users]);
 
     return (
-        <div className="h-5/6">
+        <div className="h-5/6 flex justify-center items-center">
             
             {!matchingStarted && !matchedUsers.length ? (
-                <button onClick={handleStartMatching}>Start Matching</button>
+                <button onClick={handleStartMatching} className="text-black w-2/4 h-8 bg-white rounded-full ">Start Matching</button>
             ) : matchedUsers.length ? (
                 
               <div className="w-full h-5/6 flex flex-wrap ">
@@ -122,7 +122,7 @@ const MatchedUsers: React.FC = () => {
                                 <img className="w-24 h-24 rounded-full object-cover mt-4" src={user.images[0]?.url} alt="Profile" />
                             )}
                           </div>
-                            <div className="mt-6 w-1/2 h-8 bg-green-300 rounded-full pl-2">
+                            <div className="mt-6 w-1/2 h-8 bg-green-300 rounded-full flex justify-center items-center">
                                 <h2 className="text-xl font-semibold mb-2 text-green-950">{user.display_name}</h2>
                             </div>
                         </div>
