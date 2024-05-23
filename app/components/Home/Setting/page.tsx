@@ -13,9 +13,6 @@ const Settings: React.FC = () => {
     <div>
       <h2>Settings</h2>
       <div>
-        <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
-      </div>
-      <div>
         <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
