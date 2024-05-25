@@ -1,6 +1,5 @@
 interface ImageData {
   url: string;
-  // Add other properties if necessary
 }
 
 export interface UserData {

@@ -9,8 +9,11 @@ import { RiPlayList2Fill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
 import Settings from "../Setting/page";
 
+interface LayoutProps {
+  currentUserId: string; 
+} 
 
-const Layout: React.FC = () => {
+const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
   const [matchingStarted, setMatchingStarted] = useState(false);
   const [currentPage, setCurrentPage] =  useState<"Home"  | "Profile" | "Settings" | "Playlist">("Home");
 
@@ -63,7 +66,7 @@ const Layout: React.FC = () => {
         </div>
         <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md " style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
        
-          <MatchedUsers />
+          <MatchedUsers currentUserId={currentUserId} />
        
         </div>
       </div>
