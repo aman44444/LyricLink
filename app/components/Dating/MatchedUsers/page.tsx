@@ -58,27 +58,27 @@ const MatchedUsers: React.FC = () => {
     useEffect(() => {
         const matchUsers = () => {
             if (!matchingStarted || users.length === 0) return;
-
+        
             const threshold = 0.1;
             const matches: UserData[] = [];
-
+        
             for (let i = 0; i < users.length; i++) {
                 const user1 = users[i];
                 const user1Artists = new Set(user1.topArtists.map((artist: any) => artist.name));
                 const user1Tracks = new Set(user1.topTracks.map((track: any) => track.name));
-
+        
                 let matched = false;
-
+        
                 for (let j = 0; j < users.length; j++) {
                     if (i === j) continue;
-
+        
                     const user2 = users[j];
                     const user2Artists = new Set(user2.topArtists.map((artist: any) => artist.name));
                     const user2Tracks = new Set(user2.topTracks.map((track: any) => track.name));
-
+        
                     const artistSimilarity = jaccardSimilarity(user1Artists, user2Artists);
                     const trackSimilarity = jaccardSimilarity(user1Tracks, user2Tracks);
-
+        
                     if (artistSimilarity >= threshold || trackSimilarity >= threshold) {
                         matched = true;
                         console.log("Match found:");
@@ -87,21 +87,21 @@ const MatchedUsers: React.FC = () => {
                         break;
                     }
                 }
-
-                if (matched) {
+        
+                if (matched && !matches.some(match => match.id === user1.id)) {
                     matches.push(user1);
                 }
             }
-
+        
             if (matches.length === 0) {
                 setNoMatchFound(true);
             } else {
                 setNoMatchFound(false);
             }
-
-           
-            setMatchedUsers(matches.slice(1));
+        
+            setMatchedUsers(matches);
         };
+        
 
         matchUsers();
     }, [matchingStarted, users]);
