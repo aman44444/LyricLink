@@ -72,7 +72,7 @@ const WebApp: React.FC = () => {
     <div className="w-full h-screen">
       {isLoggedIn ? (
         <>
-        <Layout/>
+        <Layout currentUserId={userData?.id}/>
         </>
       ) : (
         <div className="flex justify-center items-center w-screen h-screen " style={{ backgroundImage: "url('bgimg.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>

@@ -10,7 +10,7 @@ const jaccardSimilarity = (set1: Set<string>, set2: Set<string>): number => {
     return intersection.size / union.size;
 };
 
-const MatchedUsers: React.FC = () => {
+const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) => {
     const [users, setUsers] = useState<UserData[]>([]);
     const [matchedUsers, setMatchedUsers] = useState<UserData[]>([]);
     const [matchingStarted, setMatchingStarted] = useState(false);
@@ -63,6 +63,7 @@ const MatchedUsers: React.FC = () => {
             const matches: UserData[] = [];
         
             for (let i = 0; i < users.length; i++) {
+               if (users[i].id === currentUserId) continue;
                 const user1 = users[i];
                 const user1Artists = new Set(user1.topArtists.map((artist: any) => artist.name));
                 const user1Tracks = new Set(user1.topTracks.map((track: any) => track.name));
@@ -104,7 +105,7 @@ const MatchedUsers: React.FC = () => {
         
 
         matchUsers();
-    }, [matchingStarted, users]);
+    }, [matchingStarted, users,currentUserId]);
 
     return (
         <div className="h-5/6 flex justify-center items-center">
@@ -137,4 +138,3 @@ const MatchedUsers: React.FC = () => {
 };
 
 export default MatchedUsers;
-
