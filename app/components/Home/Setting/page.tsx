@@ -1,9 +1,6 @@
 import React from 'react';
 
 const Settings: React.FC = () => {
-  const toggleDarkMode = () => {
-    
-  };
 
   const handleLogout = () => {
    
