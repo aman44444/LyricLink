@@ -75,13 +75,13 @@ const WebApp: React.FC = () => {
         <Layout currentUserId={userData?.id}/>
         </>
       ) : (
-        <div className="flex justify-center items-center w-screen h-screen " style={{ backgroundImage: "url('bgimg.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
-          <div className="w-1/4 h-1/2 border-2 flex items-center  flex-col rounded-xl border-none">
+        <div className="flex justify-center items-center w-screen h-screen bg-cover bg-center" style={{ backgroundImage: "url('bgimg.jpg')" }}>
+          <div className="w-full md:w-1/2 lg:w-1/3 border-2 flex flex-col rounded-xl border-none ">
           <div className="flex m-10  items-center">
           <FaLink size="80px" />
           <h2 className="text-black m-3 text-7xl font-bold">LyricLink</h2>
           </div>
-           <button className="w-36 h-12 border-none bg-black absolute top-2/4 text-white rounded-full left-82" onClick={handleLogin}>Login to Spotify</button>
+           <button className="w-36 h-12 border-none bg-black text-white rounded-full mx-auto mb-10" onClick={handleLogin}>Login to Spotify</button>
          </div>
          </div>
       )}
