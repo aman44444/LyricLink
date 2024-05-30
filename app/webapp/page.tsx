@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Layout from "../components/Home/Layout/Page";
-import { FaLink } from "react-icons/fa6";
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -77,9 +76,9 @@ const WebApp: React.FC = () => {
       ) : (
         <div className="flex justify-center items-center w-screen h-screen bg-cover bg-center" style={{ backgroundImage: "url('bgimg.jpg')" }}>
           <div className="w-full md:w-1/2 lg:w-1/3 border-2 flex flex-col rounded-xl border-none ">
-          <div className="flex m-10  items-center">
-          <FaLink size="80px" />
-          <h2 className="text-black m-3 text-7xl font-bold">LyricLink</h2>
+          <div className="flex m-10 items-center justify-center ">
+          <LazyFaLink size={50} />
+          <h2 className="text-black m-3 text-6xl font-bold">LyricLink</h2>
           </div>
            <button className="w-36 h-12 border-none bg-black text-white rounded-full mx-auto mb-10" onClick={handleLogin}>Login to Spotify</button>
          </div>
@@ -88,5 +87,7 @@ const WebApp: React.FC = () => {
     </div>
   );
 };
+
+const LazyFaLink = React.lazy(() => import("react-icons/fa").then(module => ({ default: module.FaLink })));
 
 export default WebApp;
