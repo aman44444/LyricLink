@@ -14,7 +14,6 @@ interface LayoutProps {
 } 
 
 const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
-  const [matchingStarted, setMatchingStarted] = useState(false);
   const [currentPage, setCurrentPage] =  useState<"Home"  | "Profile" | "Settings" | "Playlist">("Home");
 
   const handleHomeClick = () => {
@@ -34,10 +33,6 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
   const handlePlaylistClick = () => {
     setCurrentPage("Playlist"); 
    
-  };
-
-  const handleStartMatching = () => {
-    setMatchingStarted(true);
   };
 
   return (
@@ -85,3 +80,10 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
 };
 
 export default Layout;
+
+
+
+
+
+
+
