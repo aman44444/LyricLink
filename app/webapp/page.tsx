@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Layout from "../components/Home/Layout/Page";
+import { FaSpotify } from "react-icons/fa";
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -80,7 +81,7 @@ const WebApp: React.FC = () => {
           <LazyFaLink size={50} />
           <h2 className="text-black m-3 text-6xl font-bold">LyricLink</h2>
           </div>
-           <button className="w-36 h-12 border-none bg-black text-white rounded-full mx-auto mb-10" onClick={handleLogin}>Login to Spotify</button>
+           <button className="w-52 h-12 flex border-none items-center justify-center bg-black text-white rounded-full mx-auto mb-10" onClick={handleLogin}>SIGN IN WITH SPOTIFY <FaSpotify className="ml-2"/></button>
          </div>
          </div>
       )}
