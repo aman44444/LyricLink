@@ -37,6 +37,27 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
 
   return (
     <div className="w-full h-full flex bg-black text-white p-2 ">
+      <div className="fixed bottom-0 w-full bg-neutral-800 flex justify-between md:hidden">
+        <div className="flex justify-around w-full">
+          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handleHomeClick}>
+            <GoHomeFill size={30} />
+            <p className="text-sm mt-1 hidden md:block">Home</p>
+          </div>
+          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handleProfileClick}>
+            <FaUser size={30} />
+            <p className="text-sm mt-1 hidden md:block">Profile</p>
+          </div>
+          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handlePlaylistClick}>
+            <RiPlayList2Fill size={30} />
+            <p className="text-sm mt-1 hidden md:block">Playlist</p>
+          </div>
+          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handleSettingsClick}>
+            <IoSettingsSharp size={30} />
+            <p className="text-sm mt-1 hidden md:block">Settings</p>
+          </div>
+        </div>
+      </div>
+      
       <div className="h-full w-1/6 pr-2">
         <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-4" >
           <ul>
