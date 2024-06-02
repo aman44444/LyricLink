@@ -57,9 +57,9 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
           </div>
         </div>
       </div>
-      
-      <div className="h-full w-1/6 pr-2">
-        <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-4" >
+
+      <div className="h-full w-1/6 pr-2 ">
+        <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-4 max-sm:hidden" >
           <ul>
             <li onClick={handleHomeClick} className="flex m-3 cursor-pointer">
               <GoHomeFill size={30}/>
