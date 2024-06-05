@@ -36,57 +36,36 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
   };
 
   return (
-    <div className="w-full h-full flex bg-black text-white p-2 ">
-      <div className="fixed bottom-0 w-full bg-neutral-800 flex justify-between md:hidden">
-        <div className="flex justify-around w-full">
-          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handleHomeClick}>
-            <GoHomeFill size={30} />
-            <p className="text-sm mt-1 hidden md:block">Home</p>
-          </div>
-          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handleProfileClick}>
-            <FaUser size={30} />
-            <p className="text-sm mt-1 hidden md:block">Profile</p>
-          </div>
-          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handlePlaylistClick}>
-            <RiPlayList2Fill size={30} />
-            <p className="text-sm mt-1 hidden md:block">Playlist</p>
-          </div>
-          <div className="flex flex-col items-center py-2 cursor-pointer" onClick={handleSettingsClick}>
-            <IoSettingsSharp size={30} />
-            <p className="text-sm mt-1 hidden md:block">Settings</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="h-full w-1/6 pr-2 ">
-        <div className="h-2/6 w-full border-black bg-neutral-800 rounded-md border-2 flex flex-col justify-center pl-4 max-sm:hidden" >
-          <ul>
+    <div className="w-full h-auto flex flex-col-reverse bg-black text-white sm:h-full sm:flex sm:flex-row sm:p-2">
+      <div className="w-full h-screen sm:w-1/6 sm:pr-2">
+        <div className="sm:h-2/6 sm:w-full sm:border-black sm:bg-neutral-800 sm:rounded-md sm:border-2 sm:flex sm:flex-col sm:justify-center sm:pl-4 sm:static fixed bottom-0 w-full bg-neutral-800 rounded-full" >
+          <ul className="flex justify-between sm:inline-block">
             <li onClick={handleHomeClick} className="flex m-3 cursor-pointer">
               <GoHomeFill size={30}/>
-              <p className="ml-2 text-xl">Home</p>
+              <p className="ml-2 text-xl hidden sm:inline-block">Home</p>
             </li>
             <li onClick={handleProfileClick} className="flex m-3 cursor-pointer">
              <FaUser size={30}/>
-              <p className="ml-2 text-xl">Profile</p>
+              <p className="ml-2 text-xl hidden sm:inline-block">Profile</p>
             </li>
             <li onClick={handlePlaylistClick} className="flex m-3 cursor-pointer">
               <RiPlayList2Fill size={30}/>
-              <p className="ml-2 text-xl">Playlist</p>
+              <p className="ml-2 text-xl hidden sm:inline-block">Playlist</p>
             </li>
             <li onClick={handleSettingsClick} className="flex m-3 cursor-pointer">
               <IoSettingsSharp size={30}/>
-              <p className="ml-2 text-xl">Settings</p>
+              <p className="ml-2 text-xl hidden sm:inline-block">Settings</p>
             </li>
           </ul>
          
         </div>
-        <div className=" border-black h-4/6 w-full border-2 bg-neutral-800 rounded-md " style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
+        <div className=" border-black h-screen sm:h-4/6 w-full border-2 bg-neutral-800 rounded-md " style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
        
           <MatchedUsers currentUserId={currentUserId} />
        
         </div>
       </div>
-        <div className="h-full w-5/6 mb-3 bg-neutral-800 pt-5 rounded-md overflow:hidden;">
+        <div className="h-screen w-full sm:w-5/6 mb-3 bg-neutral-800 pt-5 rounded-md overflow:hidden;">
        
           {currentPage === "Home" ? <HomePage /> :
          currentPage === "Profile" ? <UserProfile /> : 
