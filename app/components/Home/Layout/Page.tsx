@@ -36,9 +36,9 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col-reverse bg-black text-white sm:h-full sm:flex sm:flex-row sm:p-2">
-      <div className="w-full h-screen sm:w-1/6 sm:pr-2">
-        <div className="sm:h-2/6 sm:w-full sm:border-black sm:bg-neutral-800 sm:rounded-md sm:border-2 sm:flex sm:flex-col sm:justify-center sm:pl-4 sm:static fixed bottom-0 w-full bg-neutral-800 rounded-full" >
+    <div className="w-full snap-y snap-mandatory flex flex-col-reverse bg-black text-white sm:h-screen sm:flex sm:flex-row sm:p-2">
+      <div className="w-full h-screen snap-start sm:h-full sm:w-1/6 sm:pr-2">
+        <div className="fixed bottom-0 w-full bg-neutral-800 rounded-full sm:h-2/6 sm:w-full sm:border-black sm:bg-neutral-800 sm:rounded-md sm:border-2 sm:flex sm:flex-col sm:justify-center sm:pl-4 sm:static" >
           <ul className="flex justify-between sm:inline-block">
             <li onClick={handleHomeClick} className="flex m-3 cursor-pointer">
               <GoHomeFill size={30}/>
@@ -59,13 +59,13 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
           </ul>
          
         </div>
-        <div className=" border-black h-screen sm:h-4/6 w-full border-2 bg-neutral-800 rounded-md " style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
+        <div className="border-black h-screen w-full border-2 bg-neutral-800 rounded-md sm:h-4/6" style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
        
           <MatchedUsers currentUserId={currentUserId} />
        
         </div>
       </div>
-        <div className="h-screen w-full sm:w-5/6 mb-3 bg-neutral-800 pt-5 rounded-md overflow:hidden;">
+        <div className="h-screen w-full overflow:hidden bg-neutral-800 pt-5 rounded-md  snap-start sm:h-full sm:w-5/6">
        
           {currentPage === "Home" ? <HomePage /> :
          currentPage === "Profile" ? <UserProfile /> : 
