@@ -111,13 +111,13 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
         <div className="h-5/6 flex justify-center items-center">
             
             {!matchingStarted && !matchedUsers.length ? (
-                <button onClick={handleStartMatching} className="text-black w-2/4 h-8 bg-white rounded-full ">Start Matching</button>
+                <button onClick={handleStartMatching} className="text-lime-50 w-32 h-8 flex border-none items-center justify-center bg-green-900 rounded-full">Start Matching</button>
             ) : matchedUsers.length ? (
                 
               <div className="w-full h-5/6 flex flex-wrap ">
                   <h1 className=" text-xl font-semibold w-1/2 h-8 bg-lime-50 rounded-full text-black m-4 flex justify-center">Profiles</h1>
                     {matchedUsers.map(user => (
-                        <div key={user.id} className=" w-full h-full flex flex-col mx-4 mb-4 bg-white shadow-lg rounded-lg overflow-hidden p-2">
+                        <div key={user.id} className=" w-full h-full flex flex-col mx-4 mb-4 bg-white/10 shadow-lg rounded-lg overflow-hidden p-2 backdrop-filter backdrop-blur-sm">
                            <div className="border-2 border-green-900 w-full h-4/6 flex justify-center items-center rounded-lg">
                             {user.images && user.images.length > 0 && (
                                 <img className="w-24 h-24 rounded-full object-cover mt-4" src={user.images[0]?.url} alt="Profile" />
