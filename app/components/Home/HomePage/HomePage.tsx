@@ -17,16 +17,12 @@ const HomePage: React.FC = () => {
             .then(data => setTopTracks(data))
             .catch(error => console.error('Error fetching top tracks:', error));
 
-        // Fetch top artists
+        
         fetchTopArtists()
             .then(data => setTopArtists(data))
             .catch(error => console.error('Error fetching top artists:', error));
     
         }, []);
-
-    const handlePlay = () => {
-        // Handle play/resume action
-    };
 
     return (
         
@@ -38,7 +34,7 @@ const HomePage: React.FC = () => {
                 key={song.id}
                 imageUrl={song.album.images[0].url}
                 title={song.name}
-                onPlay={handlePlay}
+               
             />
             ))}
         </div>
@@ -50,7 +46,7 @@ const HomePage: React.FC = () => {
                         key={track.id}
                         imageUrl={track.album.images[0].url}
                         title={track.name}
-                        onPlay={handlePlay}
+                        
                     />
                 ))}
             </div>
@@ -63,7 +59,7 @@ const HomePage: React.FC = () => {
                    key={artist.id}
                    imageUrl={artist.images[0].url}
                    title={artist.name}
-                   onPlay={handlePlay}
+                  
                />
 
                 ))}

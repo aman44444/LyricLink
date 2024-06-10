@@ -37,11 +37,11 @@ const UserProfile: React.FC = () => {
     <div >
       {userData ? (
         <>
-        <div className="flex items-center">
+        <div className=" m-7 border-2">
           {userData.images && (
-            <img src={userData.images[0]?.url} alt="Profile" className="w-40 h-40 rounded-full" />
+            <img src={userData.images[0]?.url} alt="Profile" className="w-36 h-36 rounded-full"  />
           )}
-          <h5 className="text-2xl ml-3"> {userData.display_name}</h5>
+          <h5 className="text-2xl ml-3">{userData.display_name}</h5>
         </div>
         </>
       ) : (

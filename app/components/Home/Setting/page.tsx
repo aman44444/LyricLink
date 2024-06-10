@@ -3,10 +3,6 @@ import Logout from '../../Logout/page';
 
 const Settings: React.FC = () => {
 
-  const handleLogout = () => {
-   
-  };
-
   return (
     <div>
       <h2 className='m-7 text-xl'>Settings</h2>
