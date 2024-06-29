@@ -23,33 +23,6 @@
     }
 };
 
-
-export const getNewReleases = async (): Promise<any[]> => {
-    try {
-        const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-            throw new Error("Access token not found");
-        }
-
-        const response = await fetch("https://api.spotify.com/v1/browse/new-releases", {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch new releases");
-        }
-
-        const data = await response.json();
-        return data.albums.items;
-    } catch (error) {
-        console.error("Error fetching new releases:", error);
-        throw error;
-    }
-};
-
-
 export const fetchUserData = async (): Promise<any> => {
   try {
     const accessToken = localStorage.getItem("accessToken");
