@@ -64,19 +64,6 @@ const HomePage: React.FC = () => {
 
                 ))}
             </div>
-           
-
-        {/* <h2>New Releases</h2>
-        <div className="card-container flex ">
-            {newReleases.map((album: any) => (
-                <Card
-                    key={album.id}
-                    imageUrl={album.images[0].url}
-                    title={album.name}
-                    // subtitle={album.artists.map((artist: any) => artist.name).join(', ')}
-                />
-            ))}
-        </div> */}
     </div>
    
 );
