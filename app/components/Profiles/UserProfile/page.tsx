@@ -37,7 +37,7 @@ const UserProfile: React.FC = () => {
     <div >
       {userData ? (
         <>
-        <div className=" m-7 border-2">
+        <div className=" m-7 border-2 bg-emerald-950 rounded-xl flex items-center">
           {userData.images && (
             <img src={userData.images[0]?.url} alt="Profile" className="w-36 h-36 rounded-full"  />
           )}
