@@ -40,19 +40,19 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
       <div className="w-full h-screen snap-start sm:h-full sm:w-1/6 sm:pr-2">
         <div className="fixed bottom-0 w-full bg-black rounded-full sm:h-2/6 sm:w-full sm:border-neutral-800 sm:bg-black sm:rounded-md sm:border-2 sm:flex sm:flex-col sm:justify-center sm:pl-4 sm:static" >
           <ul className="flex justify-between sm:inline-block">
-            <li onClick={handleHomeClick} className="flex m-3 cursor-pointer">
+            <li onClick={handleHomeClick} className="flex lg:m-3 cursor-pointer">
               <GoHomeFill size={30}/>
               <p className="ml-2 text-xl hidden sm:inline-block">Home</p>
             </li>
-            <li onClick={handleProfileClick} className="flex m-3 cursor-pointer">
+            <li onClick={handleProfileClick} className="flex lg:m-3 cursor-pointer">
              <FaUser size={30}/>
               <p className="ml-2 text-xl hidden sm:inline-block">Profile</p>
             </li>
-            <li onClick={handlePlaylistClick} className="flex m-3 cursor-pointer">
+            <li onClick={handlePlaylistClick} className="flex lg:m-3 cursor-pointer">
               <RiPlayList2Fill size={30}/>
               <p className="ml-2 text-xl hidden sm:inline-block">Playlist</p>
             </li>
-            <li onClick={handleSettingsClick} className="flex m-3 cursor-pointer">
+            <li onClick={handleSettingsClick} className="flex lg:m-3 cursor-pointer">
               <IoSettingsSharp size={30}/>
               <p className="ml-2 text-xl hidden sm:inline-block">Settings</p>
             </li>

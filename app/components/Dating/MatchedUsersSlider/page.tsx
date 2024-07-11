@@ -22,7 +22,7 @@ const MatchedUsersSlider: React.FC<MatchedUsersSliderProps> = ({ matchedUsers })
         <div className="relative w-full max-w-4xl flex items-center">
           <button
             onClick={handlePrev}
-            className="absolute  right-40 mr-2 bg-emerald-950 text-white px-4 py-2 rounded-full z-10"
+            className="absolute right-40 mr-2 md:right-16 lg:right-40 bg-emerald-950 text-white px-4 py-2 rounded-full z-10"
           >
             &lt;
           </button>
@@ -37,14 +37,14 @@ const MatchedUsersSlider: React.FC<MatchedUsersSliderProps> = ({ matchedUsers })
                   />
                 )}
               </div>
-              <div className="mt-6 w-3/4 md:w-3/4 lg:w-3/4 h-12 bg-green-300 rounded-full flex justify-center items-center mx-auto">
+              <div className="mt-6 w-3/4 md:w-full md:p-2 lg:w-3/4 h-12 md:h-10 bg-green-300 rounded-full flex justify-center items-center mx-auto p-2">
                 <h2 className="text-xl md:text-xl lg:text-2xl font-semibold mb-2 text-green-950">{matchedUsers[currentIndex].display_name}</h2>
               </div>
             </div>
           </div>
           <button
             onClick={handleNext}
-            className="absolute left-40 ml-2 bg-emerald-950 text-white px-4 py-2 rounded-full z-10"
+            className="absolute left-40 ml-2 md:left-16 lg:left-40 bg-emerald-950 text-white px-4 py-2 rounded-full z-10"
           >
             &gt;
           </button>
