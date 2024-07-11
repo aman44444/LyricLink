@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CiSettings } from "react-icons/ci";
+import { IoSettingsSharp } from "react-icons/io5";
 import { MdPlaylistPlay } from "react-icons/md";
 
 interface NavbarProps {
@@ -28,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick, onPlay
             className="text-white focus:outline-none"
             onClick={handleProfileIconClick}
           >
-            <CiSettings size={30} />
+           <IoSettingsSharp  size={10}/>
           </button>
           <p className="ml-2 text-xl flex">Setting</p>
         </div>
@@ -80,10 +80,10 @@ const Navbar: React.FC<NavbarProps> = ({ onProfileClick, onSettingsClick, onPlay
             className="text-white focus:outline-none"
             onClick={onPlaylistClick}
           >
-            <MdPlaylistPlay size={30} />
+            <MdPlaylistPlay size={36} />
             
           </button>
-          <p className="ml-2 text-xl flex">Playlist</p>
+          <p className="ml-2 text-xl flex ">Playlist</p>
         </div>
       </div>
       
