@@ -1,9 +1,14 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import { firestore } from "@/app/utils/firebase.config";
 import { collection, getDocs, DocumentData, doc, setDoc } from "firebase/firestore";
 import { UserData } from "@/app/interface/types";
 import { fetchUserData, fetchTopArtists, fetchTopTracks } from "@/app/utils/spotifyAPI";
-import MatchedUsersSlider from "../MatchedUsersSlider/page";
+import MatchedUsersSlider from "../MatchedUsersSlider/MatchedUsersSlider";
+
+interface PageProps {
+    currentUserId: string;
+  }
 
 const jaccardSimilarity = (set1: Set<string>, set2: Set<string>): number => {
     const intersection = new Set([...set1].filter(x => set2.has(x)));
