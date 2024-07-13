@@ -1,13 +1,14 @@
+"use client"
 import React, { useState } from "react";
 import HomePage from "../HomePage/HomePage";
-import UserProfile from "../../Profiles/UserProfile/page";
-import UserPlaylists from "../../Player/Playlist/page";
-import MatchedUsers from "../../Dating/MatchedUsers/page";
+import UserProfile from "../../Profiles/UserProfile/UserProfile";
+import UserPlaylists from "../../Player/Playlist/Playlist";
+import MatchedUsers from "../../Dating/MatchedUsers/MatchedUsers";
 import { GoHomeFill } from "react-icons/go";
 import { FaUser } from "react-icons/fa6";
 import { RiPlayList2Fill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
-import Settings from "../Setting/page";
+import Settings from "../Setting/Setting";
 
 interface LayoutProps {
   currentUserId: string; 
@@ -21,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
   };
 
   const handleProfileClick = () => {
-    setCurrentPage("Profile"); 
+    setCurrentPage("Profile")
     
   };
 

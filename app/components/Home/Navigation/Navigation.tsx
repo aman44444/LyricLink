@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { IoSettingsSharp } from "react-icons/io5";
 import { MdPlaylistPlay } from "react-icons/md";

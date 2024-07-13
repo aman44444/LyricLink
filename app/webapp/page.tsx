@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Layout from "../components/Home/Layout/Page";
+import Layout from "../components/Home/Layout/Layout";
 import { FaSpotify } from "react-icons/fa";
 
 const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 

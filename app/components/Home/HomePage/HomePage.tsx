@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 import { getRecommendedSongs,  fetchTopTracks, fetchTopArtists } from '../../../utils/spotifyAPI'; 
 import Card from '../../common/Card/Card';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Logout from '../../Logout/page';
+import Logout from '../../Logout/Logout';
 
 const Settings: React.FC = () => {
 

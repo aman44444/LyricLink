@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import { fetchUserData } from "@/app/utils/spotifyAPI";
 import { firestore } from "@/app/utils/firebase.config";
