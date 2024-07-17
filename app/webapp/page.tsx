@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import Layout from "../components/Home/Layout/Layout";
 import { FaSpotify } from "react-icons/fa";
 
-const CLIENT_ID = "51ab00be48604869a24fa74a4be50ddb"; 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/webapp";
 const SPACE_DELIMITER = "%20";
@@ -65,7 +64,8 @@ const WebApp: React.FC = () => {
   };
 
   const handleLogin = () => {
-    window.location.href = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAM}&response_type=token&show_dialog=true`;
+    const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+    window.location.href = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${clientId}&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAM}&response_type=token&show_dialog=true`;
   };
 
   return (
