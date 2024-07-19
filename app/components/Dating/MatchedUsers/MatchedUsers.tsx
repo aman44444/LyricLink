@@ -22,7 +22,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
     const [matchingStarted, setMatchingStarted] = useState(false);
     const [noMatchFound, setNoMatchFound] = useState(false);
 
-    useEffect(() => {
+    
         const fetchUsers = async () => {
             try {
                 const usersCollection = collection(firestore, "users");
@@ -43,6 +43,8 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
                 console.error("Error fetching user data from Firestore:", error);
             }
         };
+
+      useEffect(() => {
         fetchUsers();
     }, []);
 
@@ -56,6 +58,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
                 topTracks,
             });
             setMatchingStarted(true);
+            await fetchUsers();
         } catch (error) {
             console.error("Error starting matching process:", error);
         }

@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , Suspense} from "react";
 import { useRouter } from "next/navigation";
 import Layout from "../components/Home/Layout/Layout";
 import { FaSpotify } from "react-icons/fa";
@@ -78,7 +78,9 @@ const WebApp: React.FC = () => {
         <div className="flex justify-center items-center w-screen h-screen bg-cover bg-center" style={{ backgroundImage: "url('bgimg.jpg')" }}>
           <div className="w-full md:w-1/2 lg:w-1/3 border-2 flex flex-col rounded-xl border-none ">
           <div className="flex m-10 items-center justify-center ">
+          <Suspense fallback={<div>Loading...</div>}>
           <LazyFaLink size={50} />
+          </Suspense>
           <h2 className="text-black m-3 text-6xl font-bold">LyricLink</h2>
           </div>
            <button className="w-52 h-12 flex border-none items-center justify-center bg-black text-white rounded-full mx-auto mb-10" onClick={handleLogin}>SIGN IN WITH SPOTIFY <FaSpotify className="ml-2"/></button>
