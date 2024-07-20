@@ -4,13 +4,13 @@ import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBUWxk0YoTodAAflUMyvlJlB-p9xk4sM4g",
-  authDomain: "lyriclink-2e3d6.firebaseapp.com",
-  projectId: "lyriclink-2e3d6",
-  storageBucket: "lyriclink-2e3d6.appspot.com",
-  messagingSenderId: "1031045986513",
-  appId: "1:1031045986513:web:7a9b01f5653db55e50adf0",
-  measurementId: "G-PJY350YF3R"
+  apiKey:  process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId:  process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
