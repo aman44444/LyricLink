@@ -1,27 +1,33 @@
-  export const getRecommendedSongs = async (): Promise<any[]> => {
-    try {
-        const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-            throw new Error("Access token not found");
-        }
+export const getRecommendedSongs = async (topTracks: any[], topArtists: any[]): Promise<any[]> => {
+  try {
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) {
+          throw new Error("Access token not found");
+      }
 
-        const response = await fetch('https://api.spotify.com/v1/recommendations?limit=5&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
+      const trackIds = topTracks.map(track => track.id).slice(0, 2); 
+      const artistIds = topArtists.map(artist => artist.id).slice(0, 2); 
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch recommended songs");
-        }
+     
+      const response = await fetch(`https://api.spotify.com/v1/recommendations?limit=6&seed_artists=${artistIds.join(',')}&seed_tracks=${trackIds.join(',')}`, {
+          headers: {
+              Authorization: `Bearer ${accessToken}`,
+          },
+      });
 
-        const data = await response.json();
-        return data.tracks;
-    } catch (error) {
-        console.error("Error fetching recommended songs:", error);
-        throw error;
-    }
+      if (!response.ok) {
+          throw new Error("Failed to fetch recommended songs");
+      }
+
+      const data = await response.json();
+      return data.tracks;
+  } catch (error) {
+      console.error("Error fetching recommended songs:", error);
+      throw error;
+  }
 };
+
+
 
 export const fetchUserData = async (): Promise<any> => {
   try {
@@ -119,7 +125,7 @@ export const fetchTopTracks = async (): Promise<any[]> => {
       throw new Error("Access token not found");
     }
 
-    const response = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=5", {
+    const response = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=6", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -144,7 +150,7 @@ export const fetchTopArtists = async (): Promise<any[]> => {
       throw new Error("Access token not found");
     }
 
-    const response = await fetch("https://api.spotify.com/v1/me/top/artists?limit=5", {
+    const response = await fetch("https://api.spotify.com/v1/me/top/artists?limit=6", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
