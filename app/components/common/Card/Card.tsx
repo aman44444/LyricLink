@@ -7,11 +7,11 @@ interface CardProps {
   
   const Card: React.FC<CardProps> = ({ imageUrl, title }) => {
     return (
-      <div className="h-48 w-40 m-3 p-2 rounded overflow-hidden shadow-lg bg-white">
+      <div className="flex-shrink-0 h-30 w-28 m-2 sm:h-48 sm:w-40 sm:m-3 sm:p-2 rounded  shadow-lg bg-white transform transition-transform duration-200 hover:scale-105">
         <div className='w-full h-full'>
-          <img className="w-full" src={imageUrl} alt={title} />
-          <div className="">
-            <div className="font-bold text-xs  text-black inline-block">{title}</div>
+          <img className="w-full h-4/5" src={imageUrl} alt={title} />
+          <div>
+            <div className="font-bold text-xs pl-2 text-black inline-block truncate w-full">{title}</div>
           </div>
         </div>
       </div>
