@@ -8,27 +8,25 @@ const HomePage: React.FC = () => {
     const [topTracks, setTopTracks] = useState<any[]>([]);
     const [topArtists, setTopArtists] = useState<any[]>([]);
 
+  
     useEffect(() => {
-       
-        getRecommendedSongs()
-            .then(data => setRecommendedSongs(data))
-            .catch(error => console.error('Error fetching recommended songs:', error));
+        Promise.all([fetchTopTracks(), fetchTopArtists()])
+            .then(([tracksData, artistsData]) => {
+                setTopTracks(tracksData);
+                setTopArtists(artistsData);
 
-        fetchTopTracks()
-            .then(data => setTopTracks(data))
-            .catch(error => console.error('Error fetching top tracks:', error));
-
-        
-        fetchTopArtists()
-            .then(data => setTopArtists(data))
-            .catch(error => console.error('Error fetching top artists:', error));
-    
-        }, []);
+                return getRecommendedSongs(tracksData, artistsData);
+            })
+            .then(recommendations => {
+                setRecommendedSongs(recommendations);
+            })
+            .catch(error => console.error('Error:', error));
+    }, []);
 
     return (
-     <div className="overflow-hidden ">
+     <div className="overflow-hidden p-5 h-screen sm:h-full">
         <h2 className='ml-3'>Recommended Songs</h2>
-        <div className="card-container flex ">
+        <div className=" overflow-x-auto overflow-y-hidden flex no-scrollbar">
             {recommendedSongs.map((song: any) => (
                 <Card
                    key={song.id}
@@ -39,7 +37,7 @@ const HomePage: React.FC = () => {
         </div>
 
         <h2 className='ml-3'>Top Tracks</h2>
-        <div className="card-container flex">
+        <div className="overflow-x-auto sm:overflow-hidden overflow-y-hidden flex">
                 {topTracks.map((track: any) => (
                     <Card
                         key={track.id}
@@ -50,7 +48,7 @@ const HomePage: React.FC = () => {
          </div>
 
         <h2 className='ml-3'>Top Artists</h2>
-        <div className="card-container flex">
+        <div className="overflow-x-auto sm:overflow-hidden flex">
                 {topArtists.map((artist: any) => (
                    <Card
                        key={artist.id}
