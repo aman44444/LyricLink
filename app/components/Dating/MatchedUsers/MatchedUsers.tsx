@@ -18,6 +18,8 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
     const [matchedUsers, setMatchedUsers] = useState<UserData[]>([]);
     const [matchingStarted, setMatchingStarted] = useState(false);
     const [noMatchFound, setNoMatchFound] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     
         const fetchUsers = async () => {
@@ -41,11 +43,13 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
             }
         };
 
+       
       useEffect(() => {
         fetchUsers();
     }, []);
 
     const handleStartMatching = async () => {
+        setIsLoading(true);
         try {
             const [userData, topArtists, topTracks] = await Promise.all([fetchUserData(), fetchTopArtists(), fetchTopTracks()]);
             const userRef = doc(collection(firestore, "users"), userData.id);
@@ -58,28 +62,75 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
             await fetchUsers();
         } catch (error) {
             console.error("Error starting matching process:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
-
+    
     useEffect(() => {
+        // const matchUsers = () => {
+        //     if (!matchingStarted || users.length === 0) return;
+        
+        //     const threshold = 0.1;
+        //     const matches: UserData[] = [];
+        
+        //     for (let i = 0; i < users.length; i++) {
+        //        if (users[i].id === currentUserId) continue;
+        //         const user1 = users[i];
+        //         const user1Artists = new Set(user1.topArtists.map((artist: any) => artist.name));
+        //         const user1Tracks = new Set(user1.topTracks.map((track: any) => track.name));
+        
+        //         let matched = false;
+        
+        //         for (let j = 0; j < users.length; j++) {
+        //             if (i === j) continue;
+        
+        //             const user2 = users[j];
+        //             const user2Artists = new Set(user2.topArtists.map((artist: any) => artist.name));
+        //             const user2Tracks = new Set(user2.topTracks.map((track: any) => track.name));
+        
+        //             const artistSimilarity = jaccardSimilarity(user1Artists, user2Artists);
+        //             const trackSimilarity = jaccardSimilarity(user1Tracks, user2Tracks);
+        
+        //             if (artistSimilarity >= threshold || trackSimilarity >= threshold) {
+        //                 matched = true;
+        //                 console.log("Match found:");
+        //                 console.log("User 1:", user1);
+        //                 console.log("User 2:", user2);
+        //                 break;
+        //             }
+        //         }
+        
+        //         if (matched && !matches.some(match => match.id === user1.id)) {
+        //             matches.push(user1);
+        //         }
+        //     }
+        
+        //     if (matches.length === 0) {
+        //         setNoMatchFound(true);
+        //     } else {
+        //         setNoMatchFound(false);
+        //     }
+        
+        //     setMatchedUsers(matches);
+        // };
         const matchUsers = () => {
             if (!matchingStarted || users.length === 0) return;
         
             const threshold = 0.1;
             const matches: UserData[] = [];
         
-            for (let i = 0; i < users.length; i++) {
-               if (users[i].id === currentUserId) continue;
-                const user1 = users[i];
+            users.forEach(user1 => {
+                if (user1.id === currentUserId) return;
+        
                 const user1Artists = new Set(user1.topArtists.map((artist: any) => artist.name));
                 const user1Tracks = new Set(user1.topTracks.map((track: any) => track.name));
         
                 let matched = false;
         
-                for (let j = 0; j < users.length; j++) {
-                    if (i === j) continue;
+                users.forEach(user2 => {
+                    if (user1.id === user2.id) return;
         
-                    const user2 = users[j];
                     const user2Artists = new Set(user2.topArtists.map((artist: any) => artist.name));
                     const user2Tracks = new Set(user2.topTracks.map((track: any) => track.name));
         
@@ -88,17 +139,15 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
         
                     if (artistSimilarity >= threshold || trackSimilarity >= threshold) {
                         matched = true;
-                        console.log("Match found:");
+                        console.log("Match found between users:");
                         console.log("User 1:", user1);
                         console.log("User 2:", user2);
-                        break;
+                        if (!matches.some(match => match.id === user1.id)) {
+                            matches.push(user1);
+                        }
                     }
-                }
-        
-                if (matched && !matches.some(match => match.id === user1.id)) {
-                    matches.push(user1);
-                }
-            }
+                });
+            });
         
             if (matches.length === 0) {
                 setNoMatchFound(true);
@@ -114,16 +163,16 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({ currentUserId }) =>
     }, [matchingStarted, users,currentUserId]);
 
     return (
-        <div className="h-5/6 flex justify-center items-center">
-            
-            {!matchingStarted && !matchedUsers.length ? (
-                <button onClick={handleStartMatching} className="text-lime-50 w-32 h-8 flex border-none items-center justify-center bg-green-900 rounded-full">Start Matching</button>
-            ) : matchedUsers.length ? (
-                <MatchedUsersSlider matchedUsers={matchedUsers} />
-        
-            ) : noMatchFound ? (
-                <p>No matches found</p>
-            ) : null}
+        <div className="h-screen flex justify-center items-center w-full border-2 border-neutral-800  bg-black rounded-md sm:h-full" style={{ backgroundImage: "url('match3.jpg')" ,backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
+             {isLoading ? (
+            <p>Loading...</p>  
+        ) : !matchingStarted && !matchedUsers.length ? (
+            <button onClick={handleStartMatching} className="text-lime-50 w-32 h-8 flex border-none items-center justify-center bg-green-900 rounded-full">Start Matching</button>
+        ) : matchedUsers.length ? (
+            <MatchedUsersSlider matchedUsers={matchedUsers} />
+        ) : noMatchFound ? (
+            <p>No matches found</p>
+        ) : null}
         </div>
     );
 };
