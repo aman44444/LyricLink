@@ -44,7 +44,7 @@ const UserPlaylists: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='p-3'>
       <h2 className="text-2xl font-semibold mb-4">Playlists</h2>
       <div className="grid grid-cols-2 gap-4">
         {selectedPlaylist ? (
