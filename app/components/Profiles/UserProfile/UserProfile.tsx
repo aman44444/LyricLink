@@ -35,7 +35,7 @@ const UserProfile: React.FC = () => {
   };
 
   return (
-    <div >
+    <div className="p-3">
       {userData ? (
         <>
         <div className=" m-7 border-2 bg-emerald-950 rounded-xl flex items-center">
