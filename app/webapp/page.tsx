@@ -5,7 +5,12 @@ import Layout from "../components/Home/Layout/Layout";
 import { FaSpotify } from "react-icons/fa";
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
-const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/webapp";
+// const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/webapp";
+const REDIRECT_URL_AFTER_LOGIN =
+  process.env.NODE_ENV === "production"
+    ? "https://lyriclink.vercel.app/webapp" // Production URL
+    : "http://localhost:3000/webapp"; // Development URL
+
 const SPACE_DELIMITER = "%20";
 const SCOPES = [
   "user-top-read",
