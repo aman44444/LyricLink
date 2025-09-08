@@ -24,8 +24,8 @@ const HomePage: React.FC = () => {
     }, []);
 
     return (
-     <div className="overflow-hidden p-5 h-screen sm:h-full">
-        <h2 className='ml-3'>Recommended Songs</h2>
+     <div className="overflow-hidden p-5 h-screen sm:h-full mt-4">
+        <h2 className='ml-3 text-lg'>Recommended Songs</h2>
         <div className=" overflow-x-auto overflow-y-hidden flex no-scrollbar">
             {recommendedSongs.map((song: any) => (
                 <Card
