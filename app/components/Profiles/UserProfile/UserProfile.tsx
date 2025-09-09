@@ -35,19 +35,27 @@ const UserProfile: React.FC = () => {
   };
 
   return (
-    <div className="p-3">
+    <div className="p-7 h-full w-full flex justify-center md:block" >
       {userData ? (
         <>
-        <div className=" m-7 border-2 bg-emerald-950 rounded-xl flex items-center">
-          {userData.images && (
-            <img src={userData.images[0]?.url} alt="Profile" className="w-36 h-36 rounded-full"  />
+        <div className="md:h-full h-4/5 md:w-2/4 w-full p-5 border border-zinc-600 bg-black rounded-xl">
+         <div className=" w-full flex p-4 items-center ">
+            {userData.images && (
+            <img src={userData.images[0]?.url} alt="Profile" className="w-36 h-36 rounded-lg"  />
           )}
-          <h5 className="text-2xl ml-3">{userData.display_name}</h5>
+      
+            <h5 className="text-2xl ml-3">{userData.display_name}</h5>
+         </div>
+         <hr className=" w-full mt-6 my-4 border-t border-zinc-600"></hr>
+         <div className="p-4 ">
+           <h4 className="text-lg ">Add Favorite Songs</h4>
+         </div>
         </div>
         </>
       ) : (
         <p>Loading user data...</p>
       )}
+     
     </div>
   );
 };

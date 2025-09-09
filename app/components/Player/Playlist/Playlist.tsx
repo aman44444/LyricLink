@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { fetchUserPlaylists, fetchPlaylistTracks } from '@/app/utils/spotifyAPI';
+import { IoMdArrowBack } from "react-icons/io";
 
 interface Playlist {
   id: string;
@@ -44,18 +45,26 @@ const UserPlaylists: React.FC = () => {
   };
 
   return (
-    <div className='p-3'>
+    <div className='p-7 h-full w-full flex justify-center md:block'>
+      <div className=' h-4/5 w-full md:h-full md:w-2/5 p-5 border border-zinc-600 bg-black rounded-xl'>
       <h2 className="text-2xl font-semibold mb-4">Playlists</h2>
       <div className="grid grid-cols-2 gap-4">
         {selectedPlaylist ? (
           <div>
-            <h3 className="text-xl font-semibold mb-2">{selectedPlaylist.name}</h3>
-            <button className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded" onClick={() => setSelectedPlaylist(null)}>Back to Playlists</button>
-            <ul>
-              {playlistTracks.map((track) => (
-                <li key={track.id} className="text-gray-800">{track.name}</li>
-              ))}
-            </ul>
+             <div className='flex gap-3'>
+              
+                <button className="border border-zinc-700 hover:border-zinc-400 text-white font-semibold py-2 px-4 rounded" onClick={() => setSelectedPlaylist(null)}>
+                    {<IoMdArrowBack />}
+                </button>
+                  <h3 className="text-xl font-semibold mb-2">{selectedPlaylist.name}</h3>
+             </div>
+            <div className='mt-5'>
+               <ul>            
+                {playlistTracks.map((track) => (
+                <li key={track.id} className="text-gray-400">{track.name}</li>
+               ))}
+             </ul>
+           </div>
           </div>
         ) : (
           playlists.map((playlist) => (
@@ -63,9 +72,10 @@ const UserPlaylists: React.FC = () => {
               <img className="w-24 h-24 object-cover rounded-md mb-2 " src={playlist.imageUrl} alt={playlist.name} />
               <h3 className="text-lg font-semibold mb-1">{playlist.name}</h3>
               <p className="text-gray-500">{playlist.description}</p>
-            </div>
+            </div>  
           ))
         )}
+      </div>
       </div>
     </div>
   );
