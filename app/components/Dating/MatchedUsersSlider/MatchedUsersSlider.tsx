@@ -30,12 +30,12 @@ const MatchedUsersSlider: React.FC<MatchedUsersSliderProps> = ({ matchedUsers })
     <div className="flex justify-center items-center overflow-auto">
       {matchedUsers.length > 0 && (
         <div className="relative w-full max-w-4xl flex items-center">
-          {/* <button
+          <button
             onClick={handlePrev}
             className="absolute right-40 mr-2 md:right-16 lg:right-40 bg-emerald-950 text-white px-4 py-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity"
           >
             &lt;
-          </button> */}
+          </button>
           <div className="flex justify-center items-center w-full">
             <div className="w-full max-w-md md:max-w-2xl lg:max-w-4xl h-5/6 flex flex-col mx-4 mb-4 shadow-lg rounded-lg overflow-hidden p-4 bg-white">
               <div className="border-2 border-green-900 w-full h-60 md:h-66 lg:h-112 flex justify-center items-center rounded-lg p-2">
@@ -53,11 +53,11 @@ const MatchedUsersSlider: React.FC<MatchedUsersSliderProps> = ({ matchedUsers })
               </div>
             </div>
           </div>
-          {/* <button
+          <button
             onClick={handleNext}
             className="absolute left-40 ml-2 md:left-16 lg:left-40 bg-emerald-950 text-white px-4 py-2 rounded-full z-10opacity-0 group-hover:opacity-100 transition-opacity">
             &gt;
-          </button> */}
+          </button>
         </div>
       )}
     </div>
