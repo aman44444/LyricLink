@@ -24,7 +24,7 @@ const UserProfile: React.FC = () => {
       if (userData && userData.id) {
         const userId = userData.id;
         const userDocRef = doc(firestore, "users", userId);
-        await setDoc(userDocRef, userData);
+        await setDoc(userDocRef, userData,{merge: true});
         console.log("User data saved to Firestore");
       } else {
         console.warn("User data is empty or does not contain an ID. Skipping saving to Firebase. UserData:", userData);
