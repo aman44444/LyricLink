@@ -95,7 +95,7 @@ const WebApp: React.FC = () => {
       ) : (
         <div
           className="flex justify-center items-center w-screen h-screen bg-cover bg-center"
-          style={{ backgroundImage: "url('bgimg.jpg')" }}
+          style={{ backgroundImage: "url('/images/bgimg.jpg')" }}
         >
           <div className="w-full md:w-1/2 lg:w-1/3 border-2 flex flex-col rounded-xl border-none ">
             <div className="flex m-10 items-center justify-center ">

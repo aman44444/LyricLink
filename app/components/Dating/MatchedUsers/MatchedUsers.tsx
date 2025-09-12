@@ -143,7 +143,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
     <div
       className=" h-screen flex justify-center items-center w-full border-2 border-neutral-800  bg-black rounded-md sm:h-full"
       style={{
-        backgroundImage: "url('datingBg.jpg')",
+        backgroundImage: "url('/images/datingBg.jpg')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
