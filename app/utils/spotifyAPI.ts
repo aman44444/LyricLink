@@ -1,14 +1,27 @@
-export const getRecommendedSongs = async (topTracks: any[], topArtists: any[]): Promise<any[]> => {
+export const getRecommendedSongs = async (
+  topTracks: any[], topArtists: any[]):
+  Promise<any[]> => {
   try {
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
           throw new Error("Access token not found");
       }
 
-      const trackIds = topTracks.map(track => track.id).slice(0, 2); 
-      const artistIds = topArtists.map(artist => artist.id).slice(0, 2); 
+      const trackIds = topTracks.map(track => track.id).slice(0, 2).map(t => t.id);; 
+      const artistIds = topArtists.map(artist => artist.id).slice(0, 2).map(a => a.id);; 
 
-     
+
+       if (trackIds.length === 0 && artistIds.length === 0) {
+      console.warn("No seeds available. Returning empty list.");
+      return [];
+    }
+
+    // Build query params dynamically
+    const params = new URLSearchParams({ limit: "6" });
+
+    if (artistIds.length > 0) params.append("seed_artists", artistIds.join(","));
+    if (trackIds.length > 0) params.append("seed_tracks", trackIds.join(","));
+
       const response = await fetch(`https://api.spotify.com/v1/recommendations?limit=6&seed_artists=${artistIds.join(',')}&seed_tracks=${trackIds.join(',')}`, {
           headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -16,6 +29,8 @@ export const getRecommendedSongs = async (topTracks: any[], topArtists: any[]): 
       });
 
       if (!response.ok) {
+        const errText = await response.text();
+      console.error("Spotify error:", errText);
           throw new Error("Failed to fetch recommended songs");
       }
 
