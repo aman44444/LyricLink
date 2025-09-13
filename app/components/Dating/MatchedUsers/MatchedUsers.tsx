@@ -157,7 +157,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
               onClick={handleStartMatching}
               className="text-lime-50 w-32 h-8 flex border-none items-center 
                        justify-center bg-green-900 rounded-full
-                       hover:bg-emerald-600 hover:border
+                       hover:bg-emerald-950 hover:border
                       hover:border-zinc-700"
             >
               Start Matching
