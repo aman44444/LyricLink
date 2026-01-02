@@ -107,12 +107,12 @@ const WebApp: React.FC = () => {
             <button
               className="w-52 h-12 flex border-none items-center
             justify-center bg-black text-white rounded-full 
-            mx-auto mb-10  disabled:opacity-50"
+            mx-auto mb-10  disabled:opacity-50 gap-2"
               disabled={isLoading}
               onClick={handleLogin}
             >
-              {isLoading ? "Redirecting..." : "SIGN IN WITH SPOTIFY"}
-              {!isLoading && <FaSpotify className="ml-2" />}
+              {isLoading ? "Redirecting..." : <p className="text-sm">SIGN IN WITH SPOTIFY</p>}
+              {!isLoading && <FaSpotify size={30}/>}
             </button>
           </div>
         </div>
