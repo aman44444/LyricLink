@@ -8,7 +8,7 @@ const UserProfile: React.FC = () => {
   const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("spotify_access_token");
     if (accessToken && !userData) { 
       fetchUserData()
         .then((data) => {

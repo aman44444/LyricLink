@@ -2,7 +2,7 @@ export const getRecommendedSongs = async (
   topTracks: any[], topArtists: any[]):
   Promise<any[]> => {
   try {
-      const accessToken = localStorage.getItem("accessToken");
+      const accessToken = localStorage.getItem("spotify_access_token");
       if (!accessToken) {
           throw new Error("Access token not found");
       }
@@ -46,7 +46,7 @@ export const getRecommendedSongs = async (
 
 export const fetchUserData = async (): Promise<any> => {
   try {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("spotify_access_token");
     if (!accessToken) {
       throw new Error("Access token not found");
     }
@@ -85,7 +85,7 @@ export const fetchUserData = async (): Promise<any> => {
 
 export const fetchUserPlaylists = async (): Promise<any> => {
   try {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("spotify_access_token");
     if (!accessToken) {
       throw new Error("Access token not found");
     }
@@ -110,7 +110,7 @@ export const fetchUserPlaylists = async (): Promise<any> => {
 
 export const fetchPlaylistTracks = async (playlistId: string): Promise<any[]> => {
   try {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken =localStorage.getItem("spotify_access_token");
     if (!accessToken) {
       throw new Error("Access token not found");
     }
@@ -135,7 +135,7 @@ export const fetchPlaylistTracks = async (playlistId: string): Promise<any[]> =>
 
 export const fetchTopTracks = async (): Promise<any[]> => {
   try {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("spotify_access_token");
     if (!accessToken) {
       throw new Error("Access token not found");
     }
@@ -160,7 +160,7 @@ export const fetchTopTracks = async (): Promise<any[]> => {
 
 export const fetchTopArtists = async (): Promise<any[]> => {
   try {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken =localStorage.getItem("spotify_access_token");
     if (!accessToken) {
       throw new Error("Access token not found");
     }
