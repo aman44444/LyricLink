@@ -68,13 +68,13 @@ useEffect(() => {
               <h2 className="text-black m-3 text-6xl font-bold">LyricLink</h2>
             </div>
             <button
-              className="w-52 h-12 flex border-none items-center
+              className="w-52 h-12 flex border-none items-center text-sm
             justify-center bg-black text-white rounded-full 
-            mx-auto mb-10  disabled:opacity-50 gap-2"
+            mx-auto mb-10  disabled:opacity-50 gap-2 transition duration-300 ease-in-out transform hover:scale-105"
               disabled={loading}
               onClick={login}
             >
-              {loading ? "Redirecting..." : <p className="text-sm">SIGN IN WITH SPOTIFY</p>}
+              {loading ? "Redirecting..." : "SIGN IN WITH SPOTIFY"}
                <FaSpotify size={30}/>
             </button>
           </div>
