@@ -17,6 +17,7 @@ import {
 import MatchedUsersSlider from "../MatchedUsersSlider/MatchedUsersSlider";
 
 const jaccardSimilarity = (set1: Set<string>, set2: Set<string>): number => {
+  if (set1.size === 0 && set2.size === 0) return 0;
   const intersection = new Set([...set1].filter((x) => set2.has(x)));
   const union = new Set([...set1, ...set2]);
   return intersection.size / union.size;
@@ -39,7 +40,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
         const data = doc.data() as DocumentData;
         return {
           id: doc.id,
-          display_name: data.userData.display_name,
+          display_name: data.userData.display_name || "Unknown",
           images: data.userData.images,
           topArtists: data.topArtists,
           topTracks: data.topTracks,
@@ -79,79 +80,131 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
     }
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const matchUsers = () => {
-      if (!matchingStarted || users.length === 0) return;
+  //   const matchUsers = () => {
+  //     if (!matchingStarted || users.length === 0) return;
 
-      const threshold = 0.1;
-      const matches: UserData[] = [];
+  //     const threshold = 0.1;
+  //     const matches: UserData[] = [];
 
-      users.forEach((user1) => {
-        if (user1.id === currentUserId) return;
+  //     users.forEach((user1) => {
+  //       if (user1.id === currentUserId) return;
 
-        const user1Artists = new Set(
-          user1.topArtists.map((artist: any) => artist.name)
-        );
-        const user1Tracks = new Set(
-          user1.topTracks.map((track: any) => track.name)
-        );
+  //       const user1Artists = new Set(
+  //         user1.topArtists.map((artist: any) => artist.name)
+  //       );
+  //       const user1Tracks = new Set(
+  //         user1.topTracks.map((track: any) => track.name)
+  //       );
 
-        let matched = false;
+  //       let matched = false;
 
-        users.forEach((user2) => {
-          if (user1.id === user2.id) return;
+  //       users.forEach((user2) => {
+  //         if (user1.id === user2.id) return;
 
-          const user2Artists = new Set(
-            user2.topArtists.map((artist: any) => artist.name)
-          );
-          const user2Tracks = new Set(
-            user2.topTracks.map((track: any) => track.name)
-          );
+  //         const user2Artists = new Set(
+  //           user2.topArtists.map((artist: any) => artist.name)
+  //         );
+  //         const user2Tracks = new Set(
+  //           user2.topTracks.map((track: any) => track.name)
+  //         );
 
-          const artistSimilarity = jaccardSimilarity(
-            user1Artists,
-            user2Artists
-          );
-          const trackSimilarity = jaccardSimilarity(user1Tracks, user2Tracks);
+  //         const artistSimilarity = jaccardSimilarity(
+  //           user1Artists,
+  //           user2Artists
+  //         );
+  //         const trackSimilarity = jaccardSimilarity(user1Tracks, user2Tracks);
 
-          if (artistSimilarity >= threshold || trackSimilarity >= threshold) {
-            matched = true;
-            console.log("Match found between users:");
-            console.log("User 1:", user1);
-            console.log("User 2:", user2);
-            if (!matches.some((match) => match.id === user1.id)) {
-              matches.push(user1);
-            }
-          }
-        });
-      });
+  //         if (artistSimilarity >= threshold || trackSimilarity >= threshold) {
+  //           matched = true;
+  //           console.log("Match found between users:");
+  //           console.log("User 1:", user1);
+  //           console.log("User 2:", user2);
+  //           if (!matches.some((match) => match.id === user1.id)) {
+  //             matches.push(user1);
+  //           }
+  //         }
+  //       });
+  //     });
 
-      if (matches.length === 0) {
-        setNoMatchFound(true);
-      } else {
-        setNoMatchFound(false);
+  //     if (matches.length === 0) {
+  //       setNoMatchFound(true);
+  //     } else {
+  //       setNoMatchFound(false);
+  //     }
+
+  //     setMatchedUsers(matches);
+  //   };
+
+  //   matchUsers();
+  // }, [matchingStarted, users, currentUserId]);
+
+useEffect(() => {
+  if (!matchingStarted) return;
+
+  const currentUser = users.find(u => u.id === currentUserId);
+  if (!currentUser) return;
+
+  // const others = users.filter(u => u.id !== currentUserId);
+
+  const myArtists = new Set(currentUser.topArtists.map(a => a.name));
+  const myTracks = new Set(currentUser.topTracks.map(t => t.name));
+
+  const matches: UserData[] = [];
+
+  // others.forEach(user => {
+  //   if (user.topArtists.length === 0 && user.topTracks.length === 0) return;
+
+  //   const theirArtists = new Set(user.topArtists.map(a => a.name));
+  //   const theirTracks = new Set(user.topTracks.map(t => t.name));
+
+  //   const artistSim = jaccardSimilarity(myArtists, theirArtists);
+  //   const trackSim = jaccardSimilarity(myTracks, theirTracks);
+
+  //   if (artistSim >= 0.1 || trackSim >= 0.1) {
+  //     matches.push(user);
+  //   }
+  // });
+
+    users.forEach((user) => {
+      if (user.id === currentUserId) return;
+
+      const theirArtists = new Set(user.topArtists.map((a) => a.name));
+      const theirTracks = new Set(user.topTracks.map((t) => t.name));
+
+      const artistSim = jaccardSimilarity(myArtists, theirArtists);
+      const trackSim = jaccardSimilarity(myTracks, theirTracks);
+
+      if (artistSim >= 0.1 || trackSim >= 0.1) {
+        matches.push(user);
       }
+    });
 
-      setMatchedUsers(matches);
-    };
+    
+    console.log("Matches calculated:", matches);
+  
+  setMatchedUsers(matches);
+  setNoMatchFound(matches.length === 0);
+}, [matchingStarted, users, currentUserId]);
 
-    matchUsers();
-  }, [matchingStarted, users, currentUserId]);
 
   return (
     <div
-      className=" h-screen flex justify-center items-center w-full border-2 border-neutral-800  bg-black rounded-md sm:h-full"
+      className=" relative h-screen flex justify-center items-center w-full border-2 border-neutral-800  bg-black rounded-md sm:h-full"
       style={{
         backgroundImage: "url('/images/datingBg.jpg')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-     
+      <div className='bg-red-800 w-28 absolute top-3 left-0'>
+            <p className='text-xs text-center'>Work in Progress</p>
+      </div>
+
         {isLoading ? (
           <p>Loading...</p>
-        ) : !matchingStarted && !matchedUsers.length ? (
+        ) : !matchingStarted && matchedUsers.length === 0 ? (
           
             <button
               onClick={handleStartMatching}
@@ -160,7 +213,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
                        hover:bg-emerald-950 hover:border
                       hover:border-zinc-700"
             >
-              Start Matching
+              Find Frineds
             </button>
         
         ) : matchedUsers.length ? (
