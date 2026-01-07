@@ -80,93 +80,17 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
     }
   };
 
-  // useEffect(() => {
-    
-  //   const matchUsers = () => {
-  //     if (!matchingStarted || users.length === 0) return;
-
-  //     const threshold = 0.1;
-  //     const matches: UserData[] = [];
-
-  //     users.forEach((user1) => {
-  //       if (user1.id === currentUserId) return;
-
-  //       const user1Artists = new Set(
-  //         user1.topArtists.map((artist: any) => artist.name)
-  //       );
-  //       const user1Tracks = new Set(
-  //         user1.topTracks.map((track: any) => track.name)
-  //       );
-
-  //       let matched = false;
-
-  //       users.forEach((user2) => {
-  //         if (user1.id === user2.id) return;
-
-  //         const user2Artists = new Set(
-  //           user2.topArtists.map((artist: any) => artist.name)
-  //         );
-  //         const user2Tracks = new Set(
-  //           user2.topTracks.map((track: any) => track.name)
-  //         );
-
-  //         const artistSimilarity = jaccardSimilarity(
-  //           user1Artists,
-  //           user2Artists
-  //         );
-  //         const trackSimilarity = jaccardSimilarity(user1Tracks, user2Tracks);
-
-  //         if (artistSimilarity >= threshold || trackSimilarity >= threshold) {
-  //           matched = true;
-  //           console.log("Match found between users:");
-  //           console.log("User 1:", user1);
-  //           console.log("User 2:", user2);
-  //           if (!matches.some((match) => match.id === user1.id)) {
-  //             matches.push(user1);
-  //           }
-  //         }
-  //       });
-  //     });
-
-  //     if (matches.length === 0) {
-  //       setNoMatchFound(true);
-  //     } else {
-  //       setNoMatchFound(false);
-  //     }
-
-  //     setMatchedUsers(matches);
-  //   };
-
-  //   matchUsers();
-  // }, [matchingStarted, users, currentUserId]);
-
 useEffect(() => {
   if (!matchingStarted) return;
 
   const currentUser = users.find(u => u.id === currentUserId);
   if (!currentUser) return;
 
-  // const others = users.filter(u => u.id !== currentUserId);
 
   const myArtists = new Set(currentUser.topArtists.map(a => a.name));
   const myTracks = new Set(currentUser.topTracks.map(t => t.name));
 
   const matches: UserData[] = [];
-
-  // others.forEach(user => {
-  //   if (user.topArtists.length === 0 && user.topTracks.length === 0) return;
-
-  //   const theirArtists = new Set(user.topArtists.map(a => a.name));
-  //   const theirTracks = new Set(user.topTracks.map(t => t.name));
-
-  //   const artistSim = jaccardSimilarity(myArtists, theirArtists);
-  //   const trackSim = jaccardSimilarity(myTracks, theirTracks);
-
-  //   if (artistSim >= 0.1 || trackSim >= 0.1) {
-  //     matches.push(user);
-  //   }
-  // });
-
     users.forEach((user) => {
       if (user.id === currentUserId) return;
 
@@ -198,10 +122,6 @@ useEffect(() => {
         backgroundSize: "cover",
       }}
     >
-      <div className='bg-red-800 w-28 absolute top-3 left-0'>
-            <p className='text-xs text-center'>Work in Progress</p>
-      </div>
-
         {isLoading ? (
           <p>Loading...</p>
         ) : !matchingStarted && matchedUsers.length === 0 ? (
