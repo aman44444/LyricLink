@@ -1,67 +1,57 @@
-"use client"
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useState } from "react";
 import { UserData } from "@/app/interface/types";
 
-interface MatchedUsersSliderProps {
+interface Props {
   matchedUsers: UserData[];
 }
 
-const MatchedUsersSlider: React.FC<MatchedUsersSliderProps> = ({ matchedUsers }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function MatchedUsersSlider({ matchedUsers }: Props) {
+  const [i, setI] = useState(0);
+  const user = matchedUsers[i];
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? matchedUsers.length - 1 : prevIndex - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === matchedUsers.length - 1 ? 0 : prevIndex + 1));
-  };
-
- 
-  useEffect(() => {
-    console.log("Matched users updated:", matchedUsers);
-}, [matchedUsers]);
-
-
-  console.log("Matched user at index:", matchedUsers[currentIndex]);
-
-  
   return (
-    <div className="flex justify-center items-center overflow-auto">
-      {matchedUsers.length > 0 && (
-        <div className="relative w-full max-w-4xl flex items-center">
-          <button
-            onClick={handlePrev}
-            className="absolute right-40 mr-2 md:right-16 lg:right-40 bg-emerald-950 text-white px-4 py-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            &lt;
-          </button>
-          <div className="flex justify-center items-center w-full">
-            <div className="w-full max-w-md md:max-w-2xl lg:max-w-4xl h-5/6 flex flex-col mx-4 mb-4 shadow-lg rounded-lg overflow-hidden p-4 bg-white">
-              <div className="border-2 border-green-900 w-full h-60 md:h-66 lg:h-112 flex justify-center items-center rounded-lg p-2">
-                 {matchedUsers[currentIndex].images && matchedUsers[currentIndex].images.length > 0 && (
-                  <img
-                    className="w-32 h-32 md:w-28 md:h-28 lg:w-46 lg:h-46 rounded-full object-cover mt-4"
-                    src={matchedUsers[currentIndex].images[0]?.url}
-                    alt="Profile"
-                  />
-                )} 
+    <div className="w-full flex justify-center items-center px-4 py-20">
+      <div className="relative w-full max-w-sm">
 
-              </div>
-              <div className="mt-6 w-21 md:w-full md:p-2 lg:w-3/4 h-12 md:h-10 bg-green-300 rounded-full flex justify-center items-center mx-auto p-2">
-                <h2 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-green-950 w-full text-center">{matchedUsers[currentIndex].display_name}</h2>
-              </div>
-            </div>
+        {/* Liquid Glass Card */}
+        <div className="flex flex-col rounded-[40px] bg-white-400/20 backdrop-blur-[2px]
+                        border border-white/30  p-5 text-center">
+          <div className="flex flex-col pb-2 pt-2 bg-white w-7/8 items-center border-neutral-400/20 rounded-md justify-center">
+            <img
+              src={user.images?.[0]?.url}
+              className="w-36 h-36 rounded-md object-cover shadow-2xl "
+            />
+                <h2 className="text-2xl font-semibold text-black tracking-wide">
+              {user.display_name}
+            </h2>
           </div>
-          <button
-            onClick={handleNext}
-            className="absolute left-40 ml-2 md:left-16 lg:left-40 bg-emerald-950 text-white px-4 py-2 rounded-full z-10opacity-0 group-hover:opacity-100 transition-opacity">
-            &gt;
-          </button>
+
+          <div className="mt-2">
+        
+            <p className="text-white/70 text-xs">Shared Music Energy</p>
+
+            <div className="mt-2 h-2 w-full rounded-full bg-white/20 overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-white/90 animate-pulse" />
+            </div>
+            <div className="flex flex-wrap justify-center gap-3 mt-5">
+              {user.topArtists.slice(0, 3).map((a: any, k: number) => (
+                <span key={k}
+                  className="px-2 py-1.5 rounded-full bg-white/25 text-xs text-white
+                             backdrop-blur-xl shadow-md border border-white/20">
+                  {a.name}
+                </span>
+              ))}
+            </div>
+
+            <button className="mt-7 w-full py-3 rounded-2xl 
+                               bg-white/80 text-black font-medium 
+                               shadow-xl hover:scale-[1.03] transition">
+              Connect
+            </button>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
-};
-
-export default MatchedUsersSlider;
+}
