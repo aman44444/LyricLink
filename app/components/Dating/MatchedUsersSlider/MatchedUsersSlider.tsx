@@ -36,7 +36,7 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
           <div className="mt-2">
             <p className="text-white/70 text-xs">Shared Music Energy</p>
 
-            <div className="mt-2 h-2 w-full rounded-full bg-white/20 overflow-hidden relative">
+            <div className="mt-2 h-2 w-5/6 rounded-full bg-white/20 overflow-hidden relative left-4">
               <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-white/90 animate-pulse" />
             </div>
             <div className="flex flex-wrap justify-center gap-3 mt-5">
