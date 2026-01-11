@@ -133,7 +133,7 @@ useEffect(() => {
                        hover:bg-emerald-950 hover:border
                       hover:border-zinc-700"
             >
-              Find Frineds
+              Find Friends
             </button>
         
         ) : matchedUsers.length ? (
