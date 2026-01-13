@@ -4,10 +4,8 @@ import WebApp from "./webapp/page"
 
 export default function Home() {
   return (
-   <div >
-    <div className="flex justify-center align-middle">
+    <div className="flex justify-center align-middle w-full">
      <WebApp/>
     </div>
-   </div>
   )
 }
