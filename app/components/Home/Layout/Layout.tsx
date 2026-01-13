@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ currentUserId }) => {
   return (
     <div className="w-full overflow-hidden flex flex-col-reverse bg-neutral-800 text-white sm:h-screen sm:flex sm:flex-row sm:p-2">
       <div className="w-full overflow-hidden sm:h-full sm:w-1/6 sm:pr-2">
-        <div className="p-3 fixed bottom-0 w-full bg-black rounded-full sm:static sm:bg-black sm:border-2 sm:border-neutral-800 sm:h-2/6 sm:rounded-md sm:flex sm:flex-col sm:justify-center sm:pl-4">
+        <div className="p-3 border-2 border-gray-500 fixed bottom-0 w-full z-50 bg-black rounded-full sm:static sm:bg-black sm:border-2 sm:border-neutral-800 sm:h-2/6 sm:rounded-md sm:flex sm:flex-col sm:justify-center sm:pl-4">
           <ul className="flex justify-between sm:flex sm:flex-col sm:gap-3">
             <li
               onClick={() => setCurrentPage("Home")}
