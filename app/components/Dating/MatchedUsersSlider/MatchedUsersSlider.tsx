@@ -16,19 +16,19 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
   const prev = () => setI((i - 1 + matchedUsers.length) % matchedUsers.length);
 
   return (
-    <div className="w-full flex justify-center items-center px-4 py-20">
-      <div className="relative w-full max-w-sm">
+    <div className="w-full flex justify-center items-center px-3 py-16 sm:py-20">
+      <div className="relative w-full max-w-[280px] sm:max-w-sm">
         {/* Liquid Glass Card */}
         <div
-          className="flex flex-col rounded-[40px] bg-white-400/20 backdrop-blur-[2px]
-                        border border-white/30  p-5 text-center"
+          className="flex flex-col rounded-[32px]  sm:rounded-[40px] bg-white/20 backdrop-blur-md
+                        border border-white/30  p-4 sm:p-5 text-center"
         >
           <div className="flex flex-col pb-2 pt-2 bg-white/60 backdrop-blur-[2px] w-7/8 items-center border-neutral-400/20 rounded-md justify-center">
             <img
               src={user.images?.[0]?.url}
-              className="w-36 h-36 rounded-md object-cover shadow-2xl "
+              className="w-28 h-28 sm:w-36 sm:h-36 rounded-xl object-cover shadow-2xl "
             />
-            <h2 className="text-2xl font-semibold text-black tracking-wide">
+            <h2 className="mt-2 text-lg sm:text-2xl font-semibold text-black tracking-wide">
               {user.display_name}
             </h2>
           </div>
@@ -39,7 +39,7 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
             <div className="mt-2 h-2 w-5/6 rounded-full bg-white/20 overflow-hidden relative left-4">
               <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-white/90 animate-pulse" />
             </div>
-            <div className="flex flex-wrap justify-center gap-3 mt-5">
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
               {user.topArtists.slice(0, 3).map((a: any, k: number) => (
                 <span
                   key={k}
@@ -52,9 +52,9 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
             </div>
 
             <button
-              className="mt-7 w-full py-3 rounded-2xl 
+              className="mt-6 w-full py-2.5 rounded-xl 
                                bg-white/80 text-black font-medium 
-                               shadow-xl hover:scale-[1.03] transition"
+                               shadow-xl hover:scale-95 transition"
             >
               Connect
             </button>
@@ -63,24 +63,24 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
         <div className="relative w-full max-w-sm">
           <button
             onClick={prev}
-            className="absolute -left-3 top-[-200px] -translate-y-1/2
-             w-8 h-8 rounded-full bg-white/30 backdrop-blur-xl
+            className="absolute -left-3 sm:top-[-200px] top-[-185px] -translate-y-1/2
+             w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/30 backdrop-blur-xl
              shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),
                      0_10px_30px_rgba(0,0,0,0.45)]
              text-black text-2xl hover:scale-110 active:scale-95 transition flex justify-center items-center"
           >
-            <GrFormPrevious size={25} />
+            <GrFormPrevious className="w-5 h-5 sm:w-6 sm:h-6"/>
           </button>
 
           <button
             onClick={next}
-            className="absolute -right-3 top-[-200px] -translate-y-1/2
-             w-8 h-8 rounded-full bg-white/30 backdrop-blur-xl
+            className="absolute -right-3 sm:top-[-200px] top-[-185px] -translate-y-1/2
+             w-8 h-8  sm:w-9 sm:h-9 rounded-full bg-white/30 backdrop-blur-xl
              shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),
-                     0_10px_30px_rgba(0,0,0,0.45)]
+                     0_10px_30px_rgba(181, 175, 175, 0.45)]
              text-black text-2xl hover:scale-110 active:scale-95 transition flex justify-center items-center"
           >
-            <MdOutlineNavigateNext size={28} />
+            <MdOutlineNavigateNext className="w-5 h-5 sm:w-6 sm:h-6"  />
           </button>
         </div>
       </div>
