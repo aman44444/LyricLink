@@ -27,7 +27,9 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
   currentUserId,
 }) => {
   const [users, setUsers] = useState<UserData[]>([]);
-  const [matchedUsers, setMatchedUsers] = useState<UserData[]>([]);
+  const [matchedUsers, setMatchedUsers] = useState<
+    (UserData & { similarity: number })[]
+  >([]);
   const [matchingStarted, setMatchingStarted] = useState(false);
   const [noMatchFound, setNoMatchFound] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -80,17 +82,18 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
     }
   };
 
-useEffect(() => {
-  if (!matchingStarted) return;
+  useEffect(() => {
+    if (!matchingStarted) return;
 
-  const currentUser = users.find(u => u.id === currentUserId);
-  if (!currentUser) return;
+    const currentUser = users.find((u) => u.id === currentUserId);
+    if (!currentUser) return;
 
+    const myArtists = new Set(currentUser.topArtists.map((a) => a.name));
+    const myTracks = new Set(currentUser.topTracks.map((t) => t.name));
 
-  const myArtists = new Set(currentUser.topArtists.map(a => a.name));
-  const myTracks = new Set(currentUser.topTracks.map(t => t.name));
+    // const matches: UserData[] = [];
+    const matches: (UserData & { similarity: number })[] = [];
 
-  const matches: UserData[] = [];
     users.forEach((user) => {
       if (user.id === currentUserId) return;
 
@@ -100,18 +103,21 @@ useEffect(() => {
       const artistSim = jaccardSimilarity(myArtists, theirArtists);
       const trackSim = jaccardSimilarity(myTracks, theirTracks);
 
-      if (artistSim >= 0.1 || trackSim >= 0.1) {
-        matches.push(user);
+      const similarity = Math.max(artistSim, trackSim);
+
+      if (similarity >= 0.1) {
+        matches.push({
+          ...user,
+          similarity,
+        });
       }
     });
 
-    
     console.log("Matches calculated:", matches);
-  
-  setMatchedUsers(matches);
-  setNoMatchFound(matches.length === 0);
-}, [matchingStarted, users, currentUserId]);
 
+    setMatchedUsers(matches);
+    setNoMatchFound(matches.length === 0);
+  }, [matchingStarted, users, currentUserId]);
 
   return (
     <div
@@ -122,29 +128,25 @@ useEffect(() => {
         backgroundSize: "cover",
       }}
     >
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : !matchingStarted && matchedUsers.length === 0 ? (
-          
-            <button
-              onClick={handleStartMatching}
-              className="text-lime-50 w-32 h-8 flex border-none items-center 
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : !matchingStarted && matchedUsers.length === 0 ? (
+        <button
+          onClick={handleStartMatching}
+          className="text-lime-50 w-32 h-8 flex border-none items-center 
                        justify-center bg-green-900 rounded-full
                        hover:bg-emerald-950 hover:border
                       hover:border-zinc-700"
-            >
-              Find Friends
-            </button>
-        
-        ) : matchedUsers.length ? (
-          <MatchedUsersSlider matchedUsers={matchedUsers} />
-        ) : noMatchFound ? (
-          <p className="text-white text-center text-sm mt-4">No matches found</p>
-        ) : null}
-      </div>
-    
+        >
+          Find Friends
+        </button>
+      ) : matchedUsers.length ? (
+        <MatchedUsersSlider matchedUsers={matchedUsers} />
+      ) : noMatchFound ? (
+        <p className="text-white text-center text-sm mt-4">No matches found</p>
+      ) : null}
+    </div>
   );
 };
 
 export default MatchedUsers;
-

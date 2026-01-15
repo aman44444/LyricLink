@@ -5,7 +5,7 @@ import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 
 interface Props {
-  matchedUsers: UserData[];
+  matchedUsers: (UserData & { similarity: number })[];
 }
 
 export default function MatchedUsersSlider({ matchedUsers }: Props) {
@@ -34,11 +34,17 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
           </div>
 
           <div className="mt-2">
-            <p className="text-white/70 text-xs">Shared Music Energy</p>
-
-            <div className="mt-2 h-2 w-5/6 rounded-full bg-white/20 overflow-hidden relative left-4">
-              <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-white/90 animate-pulse" />
+            <div className="mt-2 w-5/6 h-2 rounded-full bg-white/20 overflow-hidden mx-auto">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-lime-300 via-green-400 to-emerald-500 transition-all duration-700"
+                style={{ width: `${Math.round(user.similarity * 100)}%` }}
+              />
             </div>
+
+            <p className="mt-1 text-[10px] text-white/60">
+              {Math.round(user.similarity * 100)}% music match
+            </p>
+
             <div className="flex flex-wrap justify-center gap-2 mt-4">
               {user.topArtists.slice(0, 3).map((a: any, k: number) => (
                 <span
@@ -69,7 +75,7 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
                      0_10px_30px_rgba(0,0,0,0.45)]
              text-black text-2xl hover:scale-110 active:scale-95 transition flex justify-center items-center"
           >
-            <GrFormPrevious className="w-5 h-5 sm:w-6 sm:h-6"/>
+            <GrFormPrevious className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           <button
@@ -80,7 +86,7 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
                      0_10px_30px_rgba(181, 175, 175, 0.45)]
              text-black text-2xl hover:scale-110 active:scale-95 transition flex justify-center items-center"
           >
-            <MdOutlineNavigateNext className="w-5 h-5 sm:w-6 sm:h-6"  />
+            <MdOutlineNavigateNext className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
       </div>
