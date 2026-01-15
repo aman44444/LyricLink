@@ -20,7 +20,7 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
       <div className="relative w-full max-w-[280px] sm:max-w-sm">
         {/* Liquid Glass Card */}
         <div
-          className="flex flex-col rounded-[32px]  sm:rounded-[40px] bg-white/20 backdrop-blur-md
+          className="flex flex-col rounded-[32px]  sm:rounded-[40px] bg-black/10 backdrop-blur-[2px]
                         border border-white/30  p-4 sm:p-5 text-center"
         >
           <div className="flex flex-col pb-2 pt-2 bg-white/60 backdrop-blur-[2px] w-7/8 items-center border-neutral-400/20 rounded-md justify-center">
