@@ -59,8 +59,8 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
 
             <button
               className="mt-6 w-full py-2.5 rounded-xl 
-                               bg-white/80 text-black font-medium 
-                               shadow-xl hover:scale-95 transition"
+                               font-medium 
+                               shadow-xl hover:scale-95 transition bg-black/20 hover:bg-black/50 border-[1px] border-gray-500 backdrop-blur-md "
             >
               Connect
             </button>
