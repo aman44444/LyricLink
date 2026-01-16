@@ -26,12 +26,6 @@ export default function WebApp() {
   const exchangedRef = React.useRef(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("spotify_access_token");
-
-    if (token && !user) {
-      loadUser(token);
-    }
-
     if (exchangedRef.current) return;
 
     const code = new URLSearchParams(window.location.search).get("code");
