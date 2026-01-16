@@ -69,19 +69,19 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
         <div className="relative w-full max-w-sm">
           <button
             onClick={prev}
-            className="absolute -left-3 sm:top-[-200px] top-[-185px] -translate-y-1/2
-             w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/30 backdrop-blur-xl
+            className="absolute -left-2 sm:top-[-200px] top-[-185px] -translate-y-1/2
+             w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-white/30 backdrop-blur-xl
              shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),
                      0_10px_30px_rgba(0,0,0,0.45)]
              text-black text-2xl hover:scale-110 active:scale-95 transition flex justify-center items-center"
           >
-            <GrFormPrevious className="w-5 h-5 sm:w-6 sm:h-6" />
+            <GrFormPrevious className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
           <button
             onClick={next}
-            className="absolute -right-3 sm:top-[-200px] top-[-185px] -translate-y-1/2
-             w-8 h-8  sm:w-9 sm:h-9 rounded-full bg-white/30 backdrop-blur-xl
+            className="absolute -right-2 sm:top-[-200px] top-[-185px] -translate-y-1/2
+             w-8 h-8  sm:w-7 sm:h-7 rounded-full bg-white/30 backdrop-blur-xl
              shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),
                      0_10px_30px_rgba(181, 175, 175, 0.45)]
              text-black text-2xl hover:scale-110 active:scale-95 transition flex justify-center items-center"
