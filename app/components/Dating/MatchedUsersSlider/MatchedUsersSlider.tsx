@@ -49,7 +49,7 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
               {user.topArtists.slice(0, 3).map((a: any, k: number) => (
                 <span
                   key={k}
-                  className="px-2 py-1.5 rounded-full bg-white/25 text-xs text-white
+                  className="px-2 py-1.5 rounded-full bg-black text-xs text-white
                              backdrop-blur-xl shadow-md border border-white/20"
                 >
                   {a.name}
@@ -60,7 +60,7 @@ export default function MatchedUsersSlider({ matchedUsers }: Props) {
             <button
               className="mt-6 w-full py-2.5 rounded-xl 
                                font-medium 
-                               shadow-xl hover:scale-95 transition bg-black/20 hover:bg-black/50 border-[1px] border-gray-500 backdrop-blur-md "
+                               shadow-xl hover:scale-95 transition bg-black/10 hover:bg-black/50 border-[1px] border-gray-500 backdrop-blur-md "
             >
               Connect
             </button>
