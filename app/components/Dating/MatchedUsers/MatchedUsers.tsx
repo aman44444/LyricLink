@@ -8,7 +8,7 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
-import { UserData } from "@/app/interface/types";
+import { UserData, MatchedUser  } from "@/app/interface/types";
 import {
   fetchUserData,
   fetchTopArtists,
@@ -28,7 +28,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
 }) => {
   const [users, setUsers] = useState<UserData[]>([]);
   const [matchedUsers, setMatchedUsers] = useState<
-    (UserData & { similarity: number })[]
+    MatchedUser[]
   >([]);
   const [matchingStarted, setMatchingStarted] = useState(false);
   const [noMatchFound, setNoMatchFound] = useState(false);
@@ -91,8 +91,7 @@ const MatchedUsers: React.FC<{ currentUserId: string }> = ({
     const myArtists = new Set(currentUser.topArtists.map((a) => a.name));
     const myTracks = new Set(currentUser.topTracks.map((t) => t.name));
 
-    // const matches: UserData[] = [];
-    const matches: (UserData & { similarity: number })[] = [];
+    const matches:MatchedUser[] = [];
 
     users.forEach((user) => {
       if (user.id === currentUserId) return;

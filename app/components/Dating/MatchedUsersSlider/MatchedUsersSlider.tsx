@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { UserData } from "@/app/interface/types";
+import { MatchedUser } from "@/app/interface/types";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 
 interface Props {
-  matchedUsers: (UserData & { similarity: number })[];
+  matchedUsers: MatchedUser[];
 }
 
 export default function MatchedUsersSlider({ matchedUsers }: Props) {
