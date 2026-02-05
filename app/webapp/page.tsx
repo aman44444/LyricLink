@@ -57,7 +57,7 @@ export default function WebApp() {
         style={{ backgroundImage: "url('/images/bgimg.jpg')" }}
       >
         <div className="w-full md:w-1/2 lg:w-1/3 border-2 flex flex-col rounded-xl border-none ">
-          <div className="flex items-center justify-center gap-3 sm:gap-4 my-10">
+          <div className="flex items-center justify-center gap-2 sm:gap-4 my-5 sm:my-10">
             <FiLink className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20" />
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-black">
               LyricLink
@@ -65,14 +65,14 @@ export default function WebApp() {
           </div>
 
           <button
-            className="w-40 h-8 text-xs sm:w-52 sm:h-12 flex border-none items-center sm:text-sm
+            className="w-36 h-8 text-[10px] sm:w-52 sm:h-12 flex border-none items-center sm:text-sm
             justify-center bg-black text-white rounded-full 
-            mx-auto mb-10  disabled:opacity-50 gap-2 transition duration-300 ease-in-out transform hover:scale-105"
+            mx-auto mb-10 p-1 sm:p-0 disabled:opacity-50 gap-1 sm:gap-2 transition duration-300 ease-in-out transform hover:scale-105"
             disabled={loading}
             onClick={login}
           >
             {loading ? "Redirecting..." : "SIGN IN WITH SPOTIFY"}
-            <FaSpotify className="w-5 h-5 sm:w-6 sm:h-6" />
+            <FaSpotify className="w-4 h-4 sm:w-7 sm:h-7 md:w-9 md:h-9" />
           </button>
         </div>
       </div>
