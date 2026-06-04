@@ -8,6 +8,11 @@ Friend Matching: Find friends with similar music taste based on listening patter
 Responsive Design: Fully responsive UI for both desktop and mobile users.
 Real-time Updates: Firebase backend allows instant updates and friend connections.
 
+
+# Screenshots
+
+![Screenshot](public/screenshots/Screenshot.png)
+
 # Tech Stack
 Frontend: Next.js, React, TypeScript, Tailwind CSS
 Backend: Firebase (Authentication & Firestore for user data)
