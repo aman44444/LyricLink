@@ -11,16 +11,10 @@ Real-time Updates: Firebase backend allows instant updates and friend connection
 
 # Screenshots
 
+![Screenshot](public/screenshots/Screenshot1.png)
 ![Screenshot](public/screenshots/Screenshot.png)
 
 # Tech Stack
 Frontend: Next.js, React, TypeScript, Tailwind CSS
 Backend: Firebase (Authentication & Firestore for user data)
 APIs: Spotify Web API for music data and user playlists
-
-
-
-
-
-
-
