@@ -3,7 +3,7 @@ import pkceChallenge from "pkce-challenge";
 const SPOTIFY_AUTH = "https://accounts.spotify.com/authorize";
 const SPOTIFY_TOKEN = "https://accounts.spotify.com/api/token";
 
-export const REDIRECT_URI = "http://127.0.0.1:3000/webapp";
+export const REDIRECT_URI = "https://lyriclink.vercel.app/webapp";
 
 export const SCOPES =
   "user-top-read user-read-currently-playing user-read-playback-state playlist-read-private";
