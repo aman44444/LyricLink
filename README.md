@@ -13,6 +13,7 @@ Real-time Updates: Firebase backend allows instant updates and friend connection
 
 ![Screenshot](public/screenshots/Screenshot1.png)
 ![Screenshot](public/screenshots/Screenshot.png)
+![Screenshot](public/screenshots/Screenshot2.png)
 
 # Tech Stack
 Frontend: Next.js, React, TypeScript, Tailwind CSS
