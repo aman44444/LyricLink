@@ -5,6 +5,8 @@ import { FaSpotify } from "react-icons/fa";
 import { FiLink } from "react-icons/fi";
 import Layout from "../components/Home/Layout/Layout";
 import { buildSpotifyLoginUrl, exchangeCodeForToken } from "../lib/spotifyAuth";
+import WaitlistModal from "../components/Waitlist/Waitlist";
+import { useWaitlistModal } from "../components/Waitlist/useWaitlist";
 
 interface SpotifyUser {
   id: string;
@@ -15,6 +17,7 @@ interface SpotifyUser {
 export default function WebApp() {
   const [user, setUser] = useState<SpotifyUser | null>(null);
   const [loading, setLoading] = useState(false);
+  const { isOpen, closeModal } = useWaitlistModal();
 
   async function loadUser(token: string) {
     const res = await fetch("https://api.spotify.com/v1/me", {
@@ -51,6 +54,11 @@ export default function WebApp() {
   if (user) return <Layout currentUserId={user.id} />;
 
   return (
+  <> 
+    <WaitlistModal
+        isOpen={isOpen}
+        onClose={closeModal}
+     />
     <div className="w-full h-screen">
       <div
         className="flex justify-center items-center w-screen h-screen bg-cover bg-center"
@@ -77,5 +85,6 @@ export default function WebApp() {
         </div>
       </div>
     </div>
+  </>  
   );
 }
