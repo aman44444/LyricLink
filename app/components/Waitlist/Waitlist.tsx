@@ -107,14 +107,7 @@ export default function WaitlistModal({
                   onClick={joinWaitlist}
                   disabled={loading}
                   className="
-                    flex-1
-                    rounded-xl
-                    bg-green-600
-                    py-3
-                    font-semibold
-                    transition
-                    hover:bg-green-500
-                    disabled:opacity-50
+                  flex-1 h-10 rounded-xl bg-[#194630a1] px-4 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#26734A] hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50
                   "
                 >
                   {loading ? "Joining..." : "Join Waitlist"}
@@ -123,15 +116,7 @@ export default function WaitlistModal({
                 <button
                   onClick={onClose}
                   className="
-                    flex-1
-                    rounded-xl
-                    border
-                    border-white/20
-                    bg-white/10
-                    py-3
-                    font-semibold
-                    hover:bg-white/20
-                    transition
+                  flex-1 h-10 rounded-xl border border-white/20 bg-white/10 px-4 text-sm font-semibold text-white transition-all duration-200 hover:bg-white/20 hover:border-white/30 active:scale-[0.98]
                   "
                 >
                   Continue
