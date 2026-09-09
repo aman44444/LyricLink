@@ -6,12 +6,6 @@ export function useWaitlistModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem(
-      "lyriclink-waitlist-dismissed"
-    );
-
-    if (dismissed) return;
-
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 1000);
@@ -20,11 +14,6 @@ export function useWaitlistModal() {
   }, []);
 
   const closeModal = () => {
-    localStorage.setItem(
-      "lyriclink-waitlist-dismissed",
-      "true"
-    );
-
     setIsOpen(false);
   };
 
@@ -33,3 +22,4 @@ export function useWaitlistModal() {
     closeModal,
   };
 }
+
