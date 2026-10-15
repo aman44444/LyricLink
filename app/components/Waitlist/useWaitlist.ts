@@ -1,25 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function useWaitlistModal() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true); // open on first render
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 1000);
+  const closeModal = () => setIsOpen(false);
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  return {
-    isOpen,
-    closeModal,
-  };
+  return { isOpen, closeModal };
 }
-

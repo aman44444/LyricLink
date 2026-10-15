@@ -1,18 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { firestore } from "@/app/utils/firebase.config";
-import { addDoc, collection, serverTimestamp} from "firebase/firestore";
-
 interface WaitlistModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function WaitlistModal({
-  isOpen,
-  onClose,
-}: WaitlistModalProps) {
+export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [joined, setJoined] = useState(false);
@@ -25,13 +19,16 @@ export default function WaitlistModal({
     try {
       setLoading(true);
 
-      await addDoc(
-        collection(firestore, "waitlist"),
-        {
-          email,
-          createdAt: serverTimestamp(),
-        }
-      );
+      const [{ addDoc, collection, serverTimestamp }, { firestore }] =
+        await Promise.all([
+          import("firebase/firestore"),
+          import("@/app/utils/firebase.config"),
+        ]);
+
+      await addDoc(collection(firestore, "waitlist"), {
+        email,
+        createdAt: serverTimestamp(),
+      });
 
       setJoined(true);
     } catch (error) {
@@ -42,7 +39,7 @@ export default function WaitlistModal({
   };
 
   return (
-  <div
+    <div
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4"
     >
@@ -76,9 +73,9 @@ export default function WaitlistModal({
               </p>
 
               <p className="text-white/70 mb-6">
-                Only approved Spotify accounts can sign in right now.
-                Join the waitlist and we will notify you when public access
-                becomes available.
+                Only approved Spotify accounts can sign in right now. Join the
+                waitlist and we will notify you when public access becomes
+                available.
               </p>
 
               <input
